@@ -4,6 +4,7 @@ import { jsPDF } from 'jspdf';
 export interface PdfExportOptions {
   filename?: string;
   onProgress?: (step: string) => void;
+  onReady?: (url: string) => void;
 }
 
 /**
@@ -36,14 +37,22 @@ export async function exportElementToPdf(
     return false;
   }
 
+  const snapshot = element.cloneNode(true) as HTMLElement;
+  snapshot.id = `${elementId}-export`;
+  snapshot.style.position = 'absolute';
+  snapshot.style.left = '-12000px';
+  snapshot.style.top = '0';
+  snapshot.style.width = '794px';
+  document.body.appendChild(snapshot);
   try {
     onProgress?.('در حال آماده‌سازی و رندر داده‌های گزارش...');
 
     // Wait a brief moment to ensure fonts and layout have settled
-    await new Promise((resolve) => setTimeout(resolve, 150));
+    await document.fonts.ready;
+    await Promise.all(Array.from(snapshot.querySelectorAll('img')).map(img => img.decode()));
 
     // Check if the element contains designated discrete .pdf-page elements
-    const pageElements = Array.from(element.querySelectorAll<HTMLElement>('.pdf-page'));
+    const pageElements = Array.from(snapshot.querySelectorAll<HTMLElement>('.pdf-page'));
 
     if (pageElements.length > 0) {
       onProgress?.(`در حال پردازش سند ${pageElements.length} صفحه‌ای هوشران...`);
@@ -57,13 +66,14 @@ export async function exportElementToPdf(
 
       for (let i = 0; i < pageElements.length; i++) {
         const pageEl = pageElements[i];
+        if (pageEl.scrollHeight > pageEl.clientHeight + 2) throw new Error('محتوای گزارش از صفحه بیشتر است؛ لطفاً طول متن ورودی را بررسی کنید.');
         onProgress?.(`در حال تبدیل و رندر صفحه ${i + 1} از ${pageElements.length}...`);
 
         const pageCanvas = await html2canvas(pageEl, {
           scale: 2, // High resolution for ultra-sharp typography
           useCORS: true,
           logging: false,
-          backgroundColor: i === 0 ? '#0f1c2e' : '#ffffff',
+          backgroundColor: '#faf8f4',
           windowWidth: 1000,
         });
 
@@ -78,7 +88,9 @@ export async function exportElementToPdf(
       }
 
       onProgress?.('در حال نهایی‌سازی و ذخیره فایل PDF...');
-      pdf.save(filename);
+      pdf.setProperties({ title: 'گزارش خودارزیابی هوشران', author: 'Houshraan', subject: 'Organizational AI self-assessment' });
+      if (options.onReady) options.onReady(URL.createObjectURL(pdf.output('blob')));
+      else pdf.save(filename);
       return true;
     }
 
@@ -189,5 +201,7 @@ export async function exportElementToPdf(
   } catch (err) {
     console.error('PDF export failed:', err);
     return false;
+  } finally {
+    snapshot.remove();
   }
 }
