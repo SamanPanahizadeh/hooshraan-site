@@ -596,6 +596,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
               <button
                 key={s.id}
                 id={`diagnostic-step-${s.id}`}
+                aria-current={isActive ? "step" : undefined}
                 onClick={() => !s.disabled && setStep(s.id as any)}
                 disabled={s.disabled}
                 className={`flex items-center gap-2.5 p-3.5 rounded-2xl transition text-right cursor-pointer ${
@@ -654,6 +655,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                 <button
                   key={dim.key}
                   id={`diagnostic-dim-${dim.key}`}
+                  aria-pressed={isCurrentDim}
                   onClick={() => {
                     const targetIdx = HOOSHRAAN_QUESTIONS_V11.findIndex((q) => q.dimensionKey === dim.key);
                     if (targetIdx !== -1) {
@@ -726,6 +728,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                   <button
                     type="button"
                     id="question-na-btn"
+                    aria-pressed={currentValue === "NA"}
                     onClick={() => handleSelectResponse(currentQuestion.code, 'NA')}
                     className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition border cursor-pointer ${
                       currentValue === 'NA'
@@ -774,6 +777,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                         key={lvl}
                         type="button"
                         id={`question-option-${currentQuestion.code}-${lvl}`}
+                        aria-pressed={isSelected}
                         onClick={() => handleSelectResponse(currentQuestion.code, lvl)}
                         className={`w-full text-right p-5 sm:p-6 rounded-2xl transition-all border flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer ${
                           isSelected
@@ -869,7 +873,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
           })()}
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-between gap-4 bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl p-5 shadow-lg">
+          <div className="assessment-question-nav flex items-center justify-start gap-3 border rounded-2xl p-4">
             <button
               type="button"
               id="prev-question-btn"
