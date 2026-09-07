@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import './assessment.css';
 import {
   HOOSHRAAN_DIMENSIONS_V11,
   HOOSHRAAN_QUESTIONS_V11,
@@ -40,7 +41,7 @@ import { ExecutiveReportPdfDocument } from './ExecutiveReportPdfDocument';
 import { useTheme } from '../context/ThemeContext';
 
 interface QuestionResponseState {
-  value?: number | 'NA';
+  value?: number | 'NA' | 'unknown';
   evidence?: 'self-report' | 'documented' | 'observed';
   naReason?: string;
 }
@@ -82,15 +83,7 @@ const DEFAULT_ORG_PROFILE: OrgProfile = {
   digitalMaturity: '',
 };
 
-const DEFAULT_TARGET_LEVELS: TargetResponseState = {
-  strategy: 4,
-  business_value: 4,
-  people: 3,
-  governance: 3,
-  data: 4,
-  technology: 4,
-  operating_model: 3,
-};
+const DEFAULT_TARGET_LEVELS: TargetResponseState = {};
 
 const DEFAULT_AMBITION: AmbitionResponseState = {
   outcome: '',
@@ -109,13 +102,13 @@ const DIMENSION_ICONS: Record<string, React.ReactNode> = {
 
 export const OrganizationalDiagnostic: React.FC = () => {
   const { theme } = useTheme();
-  const [step, setStep] = useState<'current_assessment' | 'target_assessment' | 'report'>('current_assessment');
+  const [step, setStep] = useState<'profile' | 'current_assessment' | 'target_assessment' | 'report'>('profile');
   const [activeQuestionIndex, setActiveQuestionIndex] = useState<number>(() => {
     try {
       const saved = localStorage.getItem('hooshraan_active_q_idx_v11');
       if (saved !== null) {
         const parsed = parseInt(saved, 10);
-        if (!isNaN(parsed) && parsed >= 0 && parsed < HOOSHRAAN_QUESTIONS_V11.length) return parsed;
+        if (!isNaN(parsed) && parsed >= 0 && parsed < HOOSHRAAN_QUESTIONS_V11.length) return { ...DEFAULT_ORG_PROFILE, ...parsed };
       }
     } catch (e) {
       console.error(e);
@@ -151,7 +144,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
   const [targetLevels, setTargetLevels] = useState<TargetResponseState>(() => {
     try {
-      const saved = localStorage.getItem('hooshraan_targets_v11');
+      const saved = localStorage.getItem('hooshraan_targets_v12');
       if (saved) return JSON.parse(saved);
     } catch (e) {
       console.error(e);
@@ -193,7 +186,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('hooshraan_targets_v11', JSON.stringify(targetLevels));
+      localStorage.setItem('hooshraan_targets_v12', JSON.stringify(targetLevels));
     } catch (e) {
       console.error(e);
     }
@@ -225,6 +218,9 @@ export const OrganizationalDiagnostic: React.FC = () => {
   const reportJalaliDate = useMemo(() => getPersianJalaliDate(new Date()), []);
   const [reportViewMode, setReportViewMode] = useState<'dashboard' | 'executive_doc'>('dashboard');
 
+  const [readyPdf, setReadyPdf] = useState<{url: string; filename: string} | null>(null);
+  useEffect(() => () => { if (readyPdf) URL.revokeObjectURL(readyPdf.url); }, [readyPdf]);
+  useEffect(() => { setReadyPdf(null); }, [responses, targetLevels, orgProfile, ambition]);
   const [isExportingPdf, setIsExportingPdf] = useState<boolean>(false);
   const [pdfProgressText, setPdfProgressText] = useState<string>('');
   const [pdfExportSuccess, setPdfExportSuccess] = useState<boolean | null>(null);
@@ -246,6 +242,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
     const success = await exportElementToPdf('diagnostic-luxury-executive-pdf-document', {
       filename,
+      onReady: url => setReadyPdf({url, filename}),
       onProgress: (msg) => setPdfProgressText(msg),
     });
 
@@ -257,7 +254,10 @@ export const OrganizationalDiagnostic: React.FC = () => {
     }, 4500);
   };
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
+    setReportViewMode('executive_doc');
+    await new Promise(r => setTimeout(r, 300));
+    await document.fonts.ready;
     try {
       window.print();
     } catch (err) {
@@ -269,11 +269,12 @@ export const OrganizationalDiagnostic: React.FC = () => {
   };
 
   const resetAllResponses = () => {
+    if (!window.confirm('پاسخ‌های ذخیره‌شده پاک شوند و ارزیابی از ابتدا شروع شود؟')) return;
     setResponses({});
     setTargetLevels(DEFAULT_TARGET_LEVELS);
     setAmbition(DEFAULT_AMBITION);
     setOrgProfile(DEFAULT_ORG_PROFILE);
-    setStep('current_assessment');
+    setStep('profile');
     setActiveQuestionIndex(0);
     setAiReportText('');
     try {
@@ -286,7 +287,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
     }
   };
 
-  const handleSelectResponse = (code: string, value: number | 'NA', evidence?: 'self-report' | 'documented' | 'observed') => {
+  const handleSelectResponse = (code: string, value: number | 'NA' | 'unknown', evidence?: 'self-report' | 'documented' | 'observed') => {
     if (value === 'NA') {
       setEditingNaCode(code);
       setTempNaReason(responses[code]?.naReason || '');
@@ -349,21 +350,21 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
       questionsInDim.forEach((q) => {
         const resp = responses[q.code];
-        if (resp && typeof resp.value === 'number') {
+        if (resp && typeof resp.value === 'number' && Number.isInteger(resp.value) && resp.value >= 1 && resp.value <= 5) {
           validSum += resp.value;
           validCount += 1;
           totalValidResponses += 1;
-        } else if (resp && resp.value === 'NA') {
+        } else if (resp && resp.value === 'NA' && resp.naReason?.trim()) {
           naCount += 1;
         } else {
           missingCount += 1;
         }
       });
 
-      const dimScore = validCount > 0 ? validSum / validCount : 1.0;
+      const dimScore = validCount > 0 ? validSum / validCount : 0;
       const invalidOrNaRatio = (naCount + missingCount) / totalInDim;
       const isLowConfidence = invalidOrNaRatio > 0.20;
-      const targetScore = targetLevels[dim.key] || 3;
+      const targetScore = targetLevels[dim.key] || 0;
       const gap = targetScore - dimScore;
 
       dimensionStats[dim.key] = {
@@ -378,8 +379,9 @@ export const OrganizationalDiagnostic: React.FC = () => {
       };
     });
 
-    const completionRatio = totalValidResponses / totalQuestions;
-    const isCompletionGateMet = completionRatio >= 0.9;
+    const totalNaResponses = Object.values(dimensionStats).reduce((sum, d) => sum + d.naCount, 0);
+    const completionRatio = (totalValidResponses + totalNaResponses) / totalQuestions;
+    const isCompletionGateMet = completionRatio === 1 && Object.values(dimensionStats).every(d => d.validCount > 0);
 
     let overallScore1to5 = 0;
     HOOSHRAAN_DIMENSIONS_V11.forEach((dim) => {
@@ -431,7 +433,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
     const sortedDimensionsByGap = [...HOOSHRAAN_DIMENSIONS_V11].sort(
       (a, b) => dimensionStats[b.key].gap - dimensionStats[a.key].gap
     );
-    const topGaps = sortedDimensionsByGap.slice(0, 5).map((dim) => ({
+    const topGaps = sortedDimensionsByGap.filter(d => dimensionStats[d.key].gap > 0).slice(0, 5).map((dim) => ({
       dimension: dim,
       current: dimensionStats[dim.key].score,
       target: dimensionStats[dim.key].target,
@@ -439,7 +441,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
       weight: dim.weight,
     }));
 
-    const priorityGapDimensions = sortedDimensionsByGap.map((d) => d.key);
+    const priorityGapDimensions = sortedDimensionsByGap.filter(d => dimensionStats[d.key].gap > 0).map((d) => d.key);
     const recommendedServices = priorityGapDimensions.map((dimKey) => {
       const mapping = HOOSHRAAN_RECOMMENDATION_MAPPING[dimKey];
       const dim = HOOSHRAAN_DIMENSIONS_V11.find((d) => d.key === dimKey)!;
@@ -522,8 +524,13 @@ export const OrganizationalDiagnostic: React.FC = () => {
     }
   };
 
+  const profileReady = Boolean(orgProfile.companyName.trim() && orgProfile.industry.trim() && orgProfile.employeeCount && orgProfile.assessorRole.trim());
+  const targetsReady = HOOSHRAAN_DIMENSIONS_V11.every(d => targetLevels[d.key] >= 1 && targetLevels[d.key] <= 5);
+  const reportReady = profileReady && targetsReady && calculationResults.isCompletionGateMet;
+  const unresolved = HOOSHRAAN_QUESTIONS_V11.filter(q => !responses[q.code] || responses[q.code].value === undefined || responses[q.code].value === 'unknown');
+
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 font-sans text-slate-100 space-y-12" dir="rtl">
+    <div className="assessment-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 font-sans text-slate-100 space-y-12" dir="rtl">
       
       {/* Header Banner - Frosted Glass Container */}
       <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden print:hidden space-y-8">
@@ -576,11 +583,12 @@ export const OrganizationalDiagnostic: React.FC = () => {
         </div>
 
         {/* Global Progress Steps Bar - Spacious & Relaxed */}
-        <div className="pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-bold relative z-10">
+        <div className="pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs font-bold relative z-10">
           {[
-            { id: 'current_assessment', label: '۱. ارزیابی ۴۰ مؤلفه فعلی', icon: BarChart3 },
-            { id: 'target_assessment', label: '۲. وضعیت هدف و جاه‌طلبی', icon: Target },
-            { id: 'report', label: '۳. گزارش و نقشه راه', icon: FileCheck, disabled: !calculationResults.isCompletionGateMet },
+            { id: 'profile', label: '۱. اطلاعات سازمان', icon: Users },
+            { id: 'current_assessment', disabled: !profileReady, label: '۲. وضعیت فعلی', icon: BarChart3 },
+            { id: 'target_assessment', disabled: !profileReady, label: '۳. هدف و بازبینی', icon: Target },
+            { id: 'report', label: '۴. گزارش', icon: FileCheck, disabled: !reportReady },
           ].map((s) => {
             const Icon = s.icon;
             const isActive = step === s.id;
@@ -616,6 +624,21 @@ export const OrganizationalDiagnostic: React.FC = () => {
         </div>
       </div>
 
+      <aside className="assessment-help print:hidden">
+        <div><strong>برای تکمیل فرم کمک می‌خواهید؟</strong><p>می‌توانید فرم را خودتان تکمیل کنید. اگر درباره سؤالی مطمئن نیستید، شماره آن را برای هوشران بفرستید تا راهنمایی‌تان کنیم.</p></div>
+        <a href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">درخواست راهنمایی در تلگرام ↗</a>
+      </aside>
+      {step === 'profile' && <form className="assessment-panel" onSubmit={e => { e.preventDefault(); if (profileReady) setStep('current_assessment'); }}>
+        <h2>درباره سازمان شما</h2><p>نتیجه بر اساس پاسخ‌های شما محاسبه می‌شود و تأیید یا ممیزی مستقل سازمان نیست.</p>
+        <div className="assessment-fields">
+          {([['companyName','نام سازمان'],['industry','حوزه فعالیت'],['assessorRole','سمت پاسخ‌دهنده'],['assessorName','نام پاسخ‌دهنده (اختیاری)']] as const).map(([key,label]) => <label key={key}>{label}<input required={key !== 'assessorName'} maxLength={100} value={orgProfile[key]} onChange={e => setOrgProfile({...orgProfile,[key]:e.target.value})} /></label>)}
+          <label>تعداد کارکنان<select required value={orgProfile.employeeCount} onChange={e => setOrgProfile({...orgProfile,employeeCount:e.target.value})}><option value="">انتخاب کنید</option>{['۱ تا ۱۰','۱۱ تا ۵۰','۵۱ تا ۲۰۰','۲۰۱ تا ۵۰۰','بیش از ۵۰۰'].map(v => <option key={v}>{v}</option>)}</select></label>
+        </div>
+        <p>پاسخ‌ها فقط در همین مرورگر ذخیره می‌شوند و با تکمیل فرم برای هوشران ارسال نمی‌شوند. روی دستگاه مشترک، پس از دریافت گزارش از «شروع مجدد» استفاده کنید.</p>
+        <button className="assessment-primary" type="submit">ادامه به سؤال‌ها ←</button>
+      </form>}
+
+      {readyPdf && step === 'report' && <div className="assessment-help print:hidden" role="status"><span>فایل PDF آماده است.</span><a href={readyPdf.url} download={readyPdf.filename}>ذخیره فایل PDF</a></div>}
       {/* ================= STEP 2: CURRENT ASSESSMENT (SINGLE-QUESTION WORKFLOW) ================= */}
       {step === 'current_assessment' && (
         <div className="space-y-8">
@@ -676,7 +699,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
             }`}>
               <div
                 className="bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-300"
-                style={{ width: `${((activeQuestionIndex + 1) / 40) * 100}%` }}
+                style={{ width: `${calculationResults.completionRatio * 100}%` }}
               />
             </div>
           </div>
@@ -714,10 +737,12 @@ export const OrganizationalDiagnostic: React.FC = () => {
                           : 'bg-white/5 text-slate-400 hover:text-white border-white/10'
                     }`}
                   >
-                    N/A (نامربوط در این سازمان)
+                    در سازمان ما قابل‌اعمال نیست
                   </button>
                 </div>
 
+                <button type="button" aria-pressed={currentValue === 'unknown'} onClick={() => handleSelectResponse(currentQuestion.code, 'unknown')} className="assessment-secondary">اطلاع کافی ندارم؛ بعداً بررسی می‌کنم</button>
+                {currentValue === 'unknown' && <p role="status">این سؤال برای بازبینی نگه داشته می‌شود و امتیاز پایین محسوب نمی‌شود.</p>}
                 {/* Question Title */}
                 <div className="space-y-2">
                   <h3 className="text-xl sm:text-2xl font-black text-white leading-relaxed">
@@ -819,6 +844,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                             key={ev}
                             type="button"
                             id={`evidence-btn-${ev}`}
+                            aria-pressed={isEv}
                             onClick={() => handleSelectResponse(currentQuestion.code, currentValue, ev)}
                             className={`px-3 py-1.5 rounded-xl font-bold transition border cursor-pointer ${
                               isEv
@@ -914,7 +940,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {HOOSHRAAN_TARGET_QUESTIONS_V11.filter((t) => t.type === 'level').map((targetQ) => {
                 const currentScore = calculationResults.dimensionStats[targetQ.dimensionKey]?.score || 1;
-                const targetValue = targetLevels[targetQ.dimensionKey] || 3;
+                const targetValue = targetLevels[targetQ.dimensionKey];
                 const gap = targetValue - currentScore;
 
                 return (
@@ -927,7 +953,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                         <h4 className="text-sm font-black text-white">{targetQ.dimensionTitleFa}</h4>
                       </div>
                       <span className="text-xs font-mono text-slate-400">
-                        فعلی: <strong className="text-slate-200">{currentScore.toFixed(1)}</strong>
+                        فعلی: <strong className="text-slate-200">{calculationResults.dimensionStats[targetQ.dimensionKey]?.validCount ? currentScore.toFixed(1) : 'بدون پاسخ'}</strong>
                       </span>
                     </div>
 
@@ -941,6 +967,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                             key={lvl}
                             type="button"
                             id={`target-lvl-${targetQ.dimensionKey}-${lvl}`}
+                            aria-pressed={isTarget}
                             onClick={() => setTargetLevels({ ...targetLevels, [targetQ.dimensionKey]: lvl })}
                             className={`py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
                               isTarget
@@ -959,7 +986,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                     <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1 font-mono">
                       <span>شکاف تحول (Gap):</span>
                       <span className={`font-bold ${gap > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>
-                        {gap > 0 ? `+${gap.toFixed(1)} پله` : 'هم‌سطح'}
+                        {!targetValue ? 'هدف را انتخاب کنید' : gap > 0 ? `+${gap.toFixed(1)} پله` : gap < 0 ? 'هدف پایین‌تر از وضعیت فعلی' : 'هم‌سطح'}
                       </span>
                     </div>
                   </div>
@@ -967,6 +994,16 @@ export const OrganizationalDiagnostic: React.FC = () => {
               })}
             </div>
 
+            <section className="assessment-panel">
+              <h3>هدف و محدودیت‌ها (اختیاری)</h3>
+              <label>مهم‌ترین نتیجه‌ای که انتظار دارید<textarea maxLength={500} value={ambition.outcome} onChange={e => setAmbition({...ambition,outcome:e.target.value})} /></label>
+              <label>محدودیت اصلی سازمان<textarea maxLength={500} value={ambition.constraint} onChange={e => setAmbition({...ambition,constraint:e.target.value})} /></label>
+              <h3>بازبینی قبل از دریافت گزارش</h3>
+              <p>{toPersianDigits(Math.round(calculationResults.completionRatio * 100))}٪ سؤال‌ها تکمیل شده‌اند. هر محور باید حداقل یک پاسخ امتیازدار داشته باشد. برای هر هفت محور، هدف را انتخاب کنید.</p>
+              {unresolved.length > 0 && <div className="assessment-review">{unresolved.map(q => <button type="button" key={q.code} onClick={() => { setActiveQuestionIndex(HOOSHRAAN_QUESTIONS_V11.indexOf(q)); setStep('current_assessment'); }}>{q.code} · {responses[q.code]?.value === 'unknown' ? 'نیاز به بررسی' : 'بی‌پاسخ'}</button>)}</div>}
+              {HOOSHRAAN_DIMENSIONS_V11.filter(d => !calculationResults.dimensionStats[d.key].validCount).map(d => <p key={d.key}>محور «{d.titleFa}» هنوز پاسخ امتیازدار ندارد.</p>)}
+              {!targetsReady && <p>انتخاب وضعیت هدف برای همه محورها لازم است.</p>}
+            </section>
             {/* Actions */}
             <div className="pt-6 border-t border-white/10 flex items-center justify-between">
               <button
@@ -979,12 +1016,13 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
               <button
                 onClick={() => {
+                  if (!reportReady) return;
                   setStep('report');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                disabled={!calculationResults.isCompletionGateMet}
+                disabled={!reportReady}
                 className={`px-8 py-3.5 font-bold rounded-2xl text-xs sm:text-sm transition shadow-lg flex items-center gap-2 cursor-pointer ${
-                  calculationResults.isCompletionGateMet
+                  reportReady
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-blue-600/30'
                     : 'bg-white/5 text-slate-600 cursor-not-allowed border border-white/5'
                 }`}
@@ -1005,7 +1043,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
           {reportViewMode === 'executive_doc' && (
             <div className="space-y-6">
               <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-2xl p-4 flex items-center justify-between flex-wrap gap-4 print:hidden">
-                <span className="text-xs text-slate-300 font-semibold">پیش‌نمایش سند رسمی چاپی (۸ صفحه‌ای استاندارد)</span>
+                <span className="text-xs text-slate-300 font-semibold">پیش‌نمایش گزارش با قالب هوشران</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setReportViewMode('dashboard')}
@@ -1025,6 +1063,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
               </div>
 
               <ExecutiveReportPdfDocument
+                ambition={ambition}
                 orgProfile={orgProfile}
                 calculationResults={calculationResults}
                 reportJalaliDate={reportJalaliDate}
@@ -1047,7 +1086,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                     className="px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400/30 rounded-xl text-xs font-bold transition flex items-center gap-1.5"
                   >
                     <BookOpen className="w-4 h-4" />
-                    <span>سند ۸ صفحه‌ای رسمی هوشران</span>
+                    <span>گزارش با قالب هوشران</span>
                   </button>
                 </div>
 
@@ -1071,9 +1110,9 @@ export const OrganizationalDiagnostic: React.FC = () => {
                   </div>
 
                   <div className="p-5 bg-white/[0.02] border border-white/5 rounded-2xl space-y-1">
-                    <span className="text-xs text-slate-400">روایی و تکمیل ارزیابی</span>
+                    <span className="text-xs text-slate-400">پوشش پاسخ‌های امتیازدار</span>
                     <div className="text-xl font-black text-white font-mono">{toPersianDigits(calculationResults.totalValidResponses)} / ۴۰</div>
-                    <span className="text-[11px] text-emerald-400 font-bold">✓ داده‌ها استاندارد و معتبر</span>
+                    <span className="text-[11px] text-emerald-400 font-bold">✓ پاسخ‌ها تکمیل شده‌اند</span>
                   </div>
                 </div>
 
@@ -1186,7 +1225,8 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
             <textarea
               rows={3}
-              value={tempNaReason}
+              maxLength={500}
+                value={tempNaReason}
               onChange={(e) => setTempNaReason(e.target.value)}
               placeholder="مثال: سازمان فاقد واحد توسعه محصول نرم‌افزاری مستقل است..."
               className="w-full px-4 py-3 bg-white/[0.04] border border-white/10 rounded-2xl text-xs font-medium text-white focus:border-blue-500/60 outline-none leading-relaxed"
