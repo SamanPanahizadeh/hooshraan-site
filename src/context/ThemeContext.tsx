@@ -22,7 +22,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } catch (e) {
       console.error('Error reading theme from localStorage:', e);
     }
-    return 'dark'; // Default to dark mode as originally designed
+    return 'light'; // Paper and navy brand presentation for first-time visitors
   });
 
   const setTheme = (newTheme: ThemeMode) => {
