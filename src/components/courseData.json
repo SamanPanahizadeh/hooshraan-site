@@ -1,0 +1,318 @@
+[
+  [
+    {
+      "title": "مفهوم انسان هوشران و سواد کار با AI",
+      "items": [
+        "هدف: ساخت مدل ذهنی درست از AI و نقش انسان در همکاری با آن.",
+        "AI چیست و خانواده‌های اصلی آن کدام‌اند؟",
+        "Generative AI، Multimodal AI، Predictive AI و Agentic AI",
+        "AI به‌عنوان Tool، Assistant، Copilot و Agent",
+        "قابلیت‌ها و محدودیت‌های مدل‌های زبانی",
+        "Human + AI و Human-in-the-Loop",
+        "تمرین عملی: یک کار واقعی را به بخش‌های قابل واگذاری به AI و نیازمند قضاوت انسانی تقسیم کنید.",
+        "خروجی: نقشه Human + AI"
+      ]
+    },
+    {
+      "title": "مبانی پرامپت‌نویسی؛ Prompting 101",
+      "items": [
+        "هدف: تبدیل درخواست مبهم به دستور دقیق.",
+        "Prompt چیست و چه چیزی نیست؟",
+        "تفاوت سؤال، Instruction، Task و Prompt",
+        "Role، Objective، Context، Input، Task، Constraints و Output Format",
+        "تعیین مخاطب و هدف",
+        "تمرین عملی: یک Prompt ضعیف و نسخه حرفه‌ای آن را اجرا و مقایسه کنید.",
+        "خروجی: یک Prompt قابل‌تکرار"
+      ]
+    },
+    {
+      "title": "طراحی پرامپت‌های حرفه‌ای",
+      "items": [
+        "هدف: کنترل کیفیت و شکل خروجی.",
+        "تعیین هدف و معیار موفقیت",
+        "کنترل لحن، جزئیات و محدودیت‌ها",
+        "Prompt برای تولید، تحلیل و تصمیم‌سازی",
+        "Iterative Prompting و Prompt Chaining",
+        "تمرین عملی: یک Task واقعی را به Prompt چندمرحله‌ای تبدیل کنید.",
+        "خروجی: Prompt حرفه‌ای"
+      ]
+    },
+    {
+      "title": "Context Engineering؛ فراتر از Prompt",
+      "items": [
+        "هدف: یادگیری انتخاب و ساختاربندی Context.",
+        "تفاوت Prompt و Context",
+        "User، Task، Business، Domain، Data و Decision Context",
+        "چرا More Context الزاماً Better Context نیست؟",
+        "انتخاب، ساختاردهی و اولویت‌بندی اطلاعات",
+        "تمرین عملی: یک مسئله را بدون Context و با Context ساختاریافته اجرا کنید.",
+        "خروجی: Context Brief"
+      ]
+    },
+    {
+      "title": "Few-Shot، نمونه‌دهی و حل مسئله مرحله‌ای",
+      "items": [
+        "هدف: هدایت رفتار مدل و شکستن مسائل پیچیده.",
+        "Zero-Shot، One-Shot و Few-Shot",
+        "Positive و Negative Example",
+        "Pattern Demonstration",
+        "Problem Decomposition و Hypothesis Generation",
+        "تمرین عملی: یک مسئله پیچیده را به چند مرحله تبدیل کنید.",
+        "خروجی: Workflow تحلیلی"
+      ]
+    },
+    {
+      "title": "مقابله با خطا، Hallucination و Verification",
+      "items": [
+        "هدف: استفاده مبتنی بر شواهد به‌جای اعتماد کورکورانه.",
+        "Hallucination و False Confidence",
+        "Fact در برابر Interpretation و Hypothesis",
+        "Evidence و Unknown",
+        "Fact-Checking و Source Quality",
+        "Verification متناسب با ریسک",
+        "تمرین عملی: یک پاسخ AI را با مدل Fact → Evidence → Hypothesis → Unknown → Validation بررسی کنید.",
+        "خروجی: Verification Checklist"
+      ]
+    },
+    {
+      "title": "تحلیل، Research و تولید محتوا با AI",
+      "items": [
+        "هدف: تبدیل اطلاعات به خروجی حرفه‌ای.",
+        "Research Question و Research Brief",
+        "جست‌وجوی هدفمند و استخراج اطلاعات",
+        "تحلیل متن و داده",
+        "دسته‌بندی، مقایسه و Pattern",
+        "خلاصه‌سازی، بازنویسی و تبدیل PDF به خروجی",
+        "تمرین عملی: یک سند واقعی را تحلیل و به خروجی اجرایی تبدیل کنید.",
+        "خروجی: Research/Analysis Brief"
+      ]
+    },
+    {
+      "title": "ساخت خروجی‌های ساختاریافته و ارزیابی آن‌ها",
+      "items": [
+        "هدف: تبدیل خروجی به داده قابل استفاده و سنجش کیفیت.",
+        "Table، Classification، Extraction، Ranking و Scoring",
+        "Decision Matrix، Checklist و JSON",
+        "Output Schema",
+        "Accuracy، Relevance، Completeness، Consistency و Actionability",
+        "Generate → Evaluate → Diagnose → Improve → Re-evaluate",
+        "تمرین عملی: دو خروجی را با Rubric مشترک ارزیابی کنید.",
+        "خروجی: Output Schema + Rubric"
+      ]
+    },
+    {
+      "title": "System Prompt و Custom Instructions؛ ساخت Personal AI",
+      "items": [
+        "هدف: ساخت دستیار شخصی با رفتار پایدار.",
+        "User Prompt، System Prompt و Custom Instructions",
+        "Context پایدار و Memory",
+        "Role، Behavior، Rules و Expertise",
+        "استاندارد خروجی و محدودیت‌ها",
+        "تمرین عملی: یک Assistant متناسب با نقش کاری خود طراحی کنید.",
+        "خروجی: Assistant Specification"
+      ]
+    },
+    {
+      "title": "ساخت دستیارهای هوشمند و Agents",
+      "items": [
+        "هدف: انتخاب معماری مناسب بین Assistant، Workflow و Agent.",
+        "Assistant، Copilot و Agent",
+        "Goal، Tools، Planning و State",
+        "Memory و Multi-step Execution",
+        "Human-in-the-Loop",
+        "چه زمانی Agent لازم نیست؟",
+        "تمرین عملی: یک Task را از نظر Assistant یا Agent شدن تحلیل کنید.",
+        "خروجی: Decision Map"
+      ]
+    },
+    {
+      "title": "Knowledge Base و Workflowهای هوشمند",
+      "items": [
+        "هدف: اتصال دانش و فرآیند به AI.",
+        "Knowledge Base و Grounding",
+        "Retrieval و ساختاردهی منابع",
+        "Trigger، Input، Processing، Output و Human Review",
+        "System of Record",
+        "شناسایی فعالیت‌های قابل خودکارسازی",
+        "تمرین عملی: یک فرآیند واقعی را به Workflow تبدیل کنید.",
+        "خروجی: Workflow Blueprint"
+      ]
+    },
+    {
+      "title": "پروژه نهایی و استفاده مسئولانه از AI",
+      "items": [
+        "هدف: ترکیب Capabilityها در یک مسئله واقعی.",
+        "Privacy و Confidentiality",
+        "داده‌های حساس و Security",
+        "Intellectual Property و Bias",
+        "Verification و Human Accountability",
+        "Problem → Goal → Context → AI Task → Knowledge → Workflow → Evaluation → Action",
+        "تمرین عملی: یک مسئله واقعی را از ابتدا تا خروجی نهایی اجرا کنید.",
+        "خروجی: Assistant، Workflow یا طرح Agent"
+      ]
+    }
+  ],
+  [
+    {
+      "title": "AI-Enabled Sales و بازطراحی نقش فروشنده",
+      "items": [
+        "هدف: شناخت نقاطی که AI در فرآیند فروش ارزش ایجاد می‌کند.",
+        "AI-assisted در برابر AI-enabled Sales",
+        "Task در برابر Workflow و Decision Support",
+        "تقسیم کار انسان و AI",
+        "Sales Workflow Mapping",
+        "تمرین عملی: فرآیند فروش فعلی خود را ترسیم و نقاط AI را مشخص کنید.",
+        "خروجی: Sales Workflow Map"
+      ]
+    },
+    {
+      "title": "ICP و Account Prioritization",
+      "items": [
+        "هدف: تمرکز منابع فروش روی Accountهای ارزشمند.",
+        "ICP در برابر Target Market",
+        "Firmographic Fit",
+        "Business Model و Buying Context",
+        "Trigger و Buying Signal",
+        "Account Scoring و Prioritization",
+        "تمرین عملی: برای یک بازار B2B، Accountها را امتیازدهی و اولویت‌بندی کنید.",
+        "خروجی: Prioritized Account List"
+      ]
+    },
+    {
+      "title": "Account Intelligence",
+      "items": [
+        "هدف: تبدیل تحقیق شرکت به Sales Intelligence.",
+        "Business Model و Strategic Priorities",
+        "Products و Market Position",
+        "Competitors",
+        "Recent Events و Growth Signals",
+        "Evidence و Research Gap",
+        "تمرین عملی: برای یک Account، Evidence → Signal → Hypothesis → Unknown را استخراج کنید.",
+        "خروجی: Account Intelligence Brief"
+      ]
+    },
+    {
+      "title": "Stakeholder Intelligence",
+      "items": [
+        "هدف: شناخت Buying Committee و نقش افراد.",
+        "Decision Maker، Economic Buyer، User، Influencer، Champion و Gatekeeper",
+        "Stakeholder Mapping",
+        "Role و Influence",
+        "Relationship Mapping",
+        "تمرین عملی: برای یک Account واقعی Stakeholder Map بسازید.",
+        "خروجی: Stakeholder Map"
+      ]
+    },
+    {
+      "title": "Sales Hypothesis",
+      "items": [
+        "هدف: جایگزین کردن حدس فروشنده با فرضیه قابل آزمون.",
+        "Fact، Evidence، Signal، Hypothesis، Assumption و Unknown",
+        "Problem و Business Impact Hypothesis",
+        "Buying Hypothesis",
+        "Hypothesis-led Selling",
+        "Evidence → Hypothesis → Question → Validation",
+        "تمرین عملی: یک فرضیه مسئله و روش اعتبارسنجی آن را طراحی کنید.",
+        "خروجی: Sales Hypothesis"
+      ]
+    },
+    {
+      "title": "Discovery Intelligence",
+      "items": [
+        "هدف: طراحی گفت‌وگویی که اطلاعات ارزشمند تولید کند.",
+        "Discovery Question Design",
+        "Open و Diagnostic Questions",
+        "Pain، Impact و Priority",
+        "Current State و Desired State",
+        "Constraints و Buying Criteria",
+        "تحلیل پاسخ مشتری با AI",
+        "تمرین عملی: یک Discovery Plan و سؤال‌های مرحله‌بندی‌شده بسازید.",
+        "خروجی: Discovery Plan"
+      ]
+    },
+    {
+      "title": "AI-Powered Prospecting و Personalized Outreach",
+      "items": [
+        "هدف: تبدیل Intelligence به تعامل مرتبط.",
+        "Prospecting و Trigger-based Outreach",
+        "Contextual Personalization",
+        "Message Hypothesis",
+        "Email، LinkedIn و Call Preparation",
+        "Follow-up Sequence",
+        "Generic → Personalized → Evidence-based",
+        "تمرین عملی: برای یک Account سه سطح پیام تولید و مقایسه کنید.",
+        "خروجی: Outreach Sequence"
+      ]
+    },
+    {
+      "title": "AI-Assisted Sales Meeting",
+      "items": [
+        "هدف: استفاده از AI برای آماده‌سازی و تحلیل جلسه.",
+        "Meeting Brief",
+        "Agenda و Stakeholder Context",
+        "Customer Statements",
+        "Pain Points، Needs و Objections",
+        "Commitments، Open Questions و Next Actions",
+        "تفکیک گفته مشتری از Interpretation",
+        "تمرین عملی: قبل و بعد از یک جلسه، Brief و Intelligence بسازید.",
+        "خروجی: Meeting Brief + Intelligence"
+      ]
+    },
+    {
+      "title": "Opportunity Intelligence",
+      "items": [
+        "هدف: ارزیابی سلامت Deal بر اساس Evidence.",
+        "Opportunity Qualification",
+        "Deal Stage و Buying Stage",
+        "Stakeholder Coverage",
+        "Decision Process و Buying Criteria",
+        "Objections و Competition",
+        "Deal Risk، Missing Information و Next Best Action",
+        "تمرین عملی: یک Opportunity را با Evidence → Risk → Gap → Next Action ارزیابی کنید.",
+        "خروجی: Opportunity Assessment"
+      ]
+    },
+    {
+      "title": "CRM Intelligence",
+      "items": [
+        "هدف: تبدیل CRM به حافظه هوشمند فروش.",
+        "AI-assisted CRM Update",
+        "Interaction → Intelligence → CRM",
+        "Meeting-to-CRM",
+        "Customer و Opportunity Memory",
+        "Next Action",
+        "Data Quality و Completeness",
+        "تمرین عملی: اطلاعات یک تعامل فروش را به رکورد ساختاریافته CRM تبدیل کنید.",
+        "خروجی: CRM Intelligence Record"
+      ]
+    },
+    {
+      "title": "Sales Analytics و Decision Intelligence",
+      "items": [
+        "هدف: کمک به مدیر فروش برای تحلیل و تصمیم.",
+        "Pipeline Analysis",
+        "Conversion و Stage Analysis",
+        "Win/Loss",
+        "Forecast",
+        "Pipeline Risk",
+        "Trend، Anomaly و Scenario Analysis",
+        "Decision Support و Next Best Action",
+        "تمرین عملی: یک Pipeline را تحلیل و ریسک‌ها و اقدامات بعدی را استخراج کنید.",
+        "خروجی: Sales Decision Brief"
+      ]
+    },
+    {
+      "title": "Sales AI Workflow & Agents",
+      "items": [
+        "هدف: اتصال Capabilityها به Workflow یا Agent.",
+        "Workflow، Trigger، Input، Processing، Human Review و Output",
+        "CRM Integration و Automation",
+        "Assistant و Agent",
+        "Agentic Workflow",
+        "Human-in-the-Loop",
+        "تمرین عملی: فرآیند Target Account تا Next Best Action را طراحی کنید.",
+        "خروجی: Sales AI Workflow Blueprint"
+      ]
+    }
+  ]
+]

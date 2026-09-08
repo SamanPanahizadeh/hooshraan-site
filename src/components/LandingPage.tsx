@@ -1,27 +1,13 @@
-import React, { useState } from 'react';
-import { ArrowLeft, ArrowDown, Check, Pause, Play } from 'lucide-react';
+import React from 'react';
+import { ArrowLeft, ArrowDown, Check } from 'lucide-react';
 
 import { FutureSection, CoursesSection } from './LandingContent';
 
-function CapacityVisual() {
-  const [paused, setPaused] = useState(false);
-  return <figure className="hr-orbit" data-paused={paused} aria-label="تصویر مفهومی پیوند توانمندی انسان و هوش مصنوعی">
-    <svg viewBox="0 0 700 700" fill="none" aria-hidden="true">
-      <defs><radialGradient id="hr-glow"><stop stopColor="currentColor" stopOpacity=".12"/><stop offset="1" stopColor="currentColor" stopOpacity="0"/></radialGradient></defs>
-      <circle cx="350" cy="350" r="340" fill="url(#hr-glow)"/>
-      <g className="hr-orbit-lines">{Array.from({length: 14}, (_, i) => <ellipse key={i} cx="350" cy="350" rx={120 + i * 10} ry={255 - i * 7} transform={`rotate(${i * 13} 350 350)`} />)}</g>
-      <circle cx="350" cy="350" r="66" className="hr-orbit-core"/>
-      <path d="M350 323L377 350L350 377L323 350Z" fill="currentColor" opacity=".9"/>
-      <g className="hr-orbit-satellite"><circle cx="350" cy="96" r="7" fill="currentColor"/><circle cx="350" cy="96" r="15" stroke="currentColor" opacity=".25"/></g>
-    </svg>
-    <figcaption><span>انسان، در مرکز تحول</span><button onClick={() => setPaused(!paused)} aria-label={paused ? 'ادامه حرکت تصویر' : 'توقف حرکت تصویر'} aria-pressed={paused}>{paused ? <Play size={16}/> : <Pause size={16}/>}</button></figcaption>
-  </figure>;
-}
 export function LandingPage() {
   return <div className="hr-landing">
     <section className="hr-hero hr-shell" aria-labelledby="hero-title">
       <div className="hr-hero-copy"><p className="hr-eyebrow"><span />هوش مصنوعی در کار واقعی</p><h1 id="hero-title">ظرفیت بیشتر<br />برای <em>انسان.</em></h1><p className="hr-hero-description">با کمک هوش مصنوعی، کار را دوباره ببینیم؛<br className="hr-desktop-break" /> و برای فکر کردن، تصمیم گرفتن و خلق ارزش، جا باز کنیم.</p><p className="hr-hero-detail">هوشران به سازمان‌ها کمک می‌کند استفاده از هوش مصنوعی را به روشی عملی، آگاهانه و تکرارپذیر در کار تیم تبدیل کنند.</p><div className="hr-actions"><a className="hr-button" href="#/assessment">شروع ارزیابی سازمان<ArrowLeft size={19} /></a><a className="hr-text-link" href="#courses">آشنایی با دوره‌ها<ArrowDown size={16} /></a></div></div>
-      <CapacityVisual />
+      
       <div className="hr-hero-bottom"><span>از ظرفیت فردی، تا قابلیت سازمانی</span><span dir="ltr">HUMAN + AI</span></div>
     </section>
     <section className="hr-approach hr-shell" id="our-approach" aria-labelledby="approach-title">

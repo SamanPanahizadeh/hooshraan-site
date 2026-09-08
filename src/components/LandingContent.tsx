@@ -1,4 +1,5 @@
 import React from 'react';
+import courseData from './courseData.json';
 
 const jobs = 'https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf';
 const risks = 'https://reports.weforum.org/docs/WEF_Global_Risks_Report_2026.pdf';
@@ -23,24 +24,28 @@ export function FutureSection() {
     <p className="hr-method-note">این داده‌ها انتظارات و ارزیابی‌های پاسخ‌دهندگان‌اند؛ آمار اختصاصی ایران یا سنجش اثربخشی دوره‌های هوشران نیستند. گزارش مشاغل عمدتاً بر سازمان‌های بزرگ تمرکز دارد.</p>
   </section>;
 }
-const sessions: [string,string[]][] = [
- ['مفهوم انسان هوش‌یار و سواد کار با AI',['آشنایی با نقش هوش مصنوعی در کار و زندگی','معرفی ابزارها و نحوه ثبت‌نام و پیکربندی اولیه','شناخت توانمندی‌ها و محدودیت‌های مدل‌های زبانی']],
- ['مبانی پرامپت‌نویسی؛ Prompting 101',['اجزای استاندارد پرامپت','نقش، زمینه، دستور و قالب خروجی','تبدیل درخواست‌های مبهم به درخواست‌های دقیق']],
- ['طراحی پرامپت‌های حرفه‌ای',['تعیین نقش و شخصیت برای AI','مشخص‌کردن هدف، مخاطب و محدودیت‌ها','طراحی خروجی‌های قابل‌کنترل و قابل‌تکرار']],
- ['پرامپت‌نویسی چندنمونه‌ای و استدلال مرحله‌ای',['تکنیک Few-Shot Prompting','ارائه نمونه برای هدایت مدل','استفاده صحیح از روش‌های تحلیل مرحله‌به‌مرحله']],
- ['ساخت خروجی‌های ساختاریافته',['دریافت خروجی به‌صورت جدول، فهرست و قالب مشخص','طراحی پرامپت برای تحلیل و دسته‌بندی اطلاعات']],
- ['مقابله با خطا و توهم هوش مصنوعی',['مفهوم Hallucination','روش‌های بررسی صحت اطلاعات','طراحی پرامپت‌های Fact-Checking','شناسایی خطاهای منطقی و اطلاعات ساختگی']],
- ['تحلیل، بازنویسی و تولید محتوا با AI',['خلاصه‌سازی متن و فایل‌های PDF','استخراج نکات کلیدی و تبدیل محتوا به اسلاید','تولید، ویرایش و بهبود متن','جست‌وجوی هدفمند و تحلیل اطلاعات']],
- ['ارزیابی و بهینه‌سازی خروجی‌ها',['تعریف معیارهای ارزیابی خروجی','مقایسه نسخه‌های مختلف پرامپت','مدیریت زمان و افزایش بهره‌وری','چرخه اصلاح مسئله و بهبود پاسخ']],
- ['System Prompt و Custom Instructions',['تفاوت پرامپت کاربر، System Prompt و دستورهای سفارشی','طراحی دستورالعمل‌های پایدار برای AI','ساخت دستیار هوشمند با نقش و رفتار مشخص']],
- ['ساخت دستیارهای هوشمند و Agents',['آشنایی با مفهوم Agent','طراحی دستیار تخصصی برای یک حوزه','تعریف وظایف، نقش‌ها و جریان اجرای کار','آشنایی با GPTهای سفارشی و ابزارهای مشابه']],
- ['پایگاه دانش و Workflowهای هوشمند',['ساخت Knowledge Base تخصصی','اتصال دستورالعمل‌ها و منابع به دستیار','طراحی گردش‌کارهای چندمرحله‌ای','خودکارسازی فعالیت‌های تکراری']],
- ['پروژه نهایی و اصول استفاده مسئولانه',['اجرای یک پروژه واقعی از ابتدا تا انتها','طراحی یک دستیار یا جریان کاری تخصصی','بررسی امنیت، حریم خصوصی و داده‌های حساس','ارزیابی خروجی و ارائه پروژه نهایی']],
-];
+
+function followPointer(event: React.PointerEvent<HTMLElement>) {
+ if (event.pointerType !== 'mouse' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ const card = event.currentTarget, box = card.getBoundingClientRect();
+ const x = (event.clientX-box.left)/box.width, y = (event.clientY-box.top)/box.height;
+ card.style.setProperty('--mx', `${x*100}%`); card.style.setProperty('--my', `${y*100}%`);
+ card.style.setProperty('--rx', `${(0.5-y)*3}deg`); card.style.setProperty('--ry', `${(x-0.5)*3}deg`);
+}
 export function CoursesSection() {
- return <section className="hr-courses hr-shell" id="courses" aria-labelledby="courses-title"><p className="hr-eyebrow">۰۳ / مسیرهای یادگیری هوشران</p><h2 id="courses-title">از شناخت ابزار،<br /><em>تا توانمندی در کار واقعی.</em></h2><p className="hr-section-lead">آموزش و تمرین برای استفاده آگاهانه از هوش مصنوعی؛ با تمرکز بر مسئله، کیفیت خروجی و نیاز واقعی فرد یا سازمان.</p>
- <article className="hr-course-main"><div className="hr-course-intro"><span className="hr-course-tag">۱۲ جلسه آموزشی و عملی</span><h3>انسان هوشران</h3><p>مسیری از سواد کار با AI و پرامپت‌نویسی تا ساخت دستیار تخصصی و گردش‌کار هوشمند.</p><div className="hr-course-outcome"><strong>خروجی نهایی دوره</strong><p>هر شرکت‌کننده یک دستیار هوش مصنوعی یا Workflow تخصصی متناسب با نیاز شخصی یا کاری خود طراحی و اجرا می‌کند.</p></div><a className="hr-button" href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">دریافت اطلاعات و شرایط شرکت ↗</a><p className="hr-course-note">برای اطلاع از زمان‌بندی، مدت هر جلسه، هزینه و شیوه برگزاری با هوشران در ارتباط باشید.</p></div>
- <div className="hr-syllabus"><p className="hr-syllabus-guide">سرفصل هر جلسه را باز کنید و جزئیات را ببینید.</p>{sessions.map(([title,items],i)=><details key={title}><summary><span className="hr-number">{fa(i+1).padStart(2,'۰')}</span><span>{title}</span><span className="hr-details-plus" aria-hidden="true">+</span></summary><ul>{items.map(item=><li key={item}>{item}</li>)}</ul></details>)}</div></article>
- <article className="hr-sales-course"><div><span className="hr-course-tag">مسیر ویژه سازمان‌ها · سطح B</span><h3>آمادگی دپارتمان فروش</h3><p>دوره‌ای متمرکز با هدف توانمندشدن کارکنان در انجام کارهای روزمره اداری و کاربردهای پیشرفته منتخب فروش با کمک هوش مصنوعی.</p></div><div className="hr-sales-duration"><strong>۴ ساعت</strong><span>۲ جلسه، هر جلسه ۲ ساعت</span><a className="hr-text-link" href="mailto:info@houshraan.ir">هماهنگی دوره سازمانی ↗</a></div></article>
+ const courses = [
+ {title:'انسان هوشران', label:'توانمندی فردی و حرفه‌ای', english:'HUMAN + AI', description:'پایه‌ای برای کار حرفه‌ای با هوش مصنوعی؛ از مدل ذهنی و مهندسی زمینه تا ارزیابی خروجی و ساخت دستیار. مبنای ورود به مسیرهای تخصصی دپارتمانی.', meta:'۱۲ سرفصل · ۴ ساعت · ۲ جلسه', result:'دستیار تخصصی، گردش‌کار یا طرح Agent برای یک مسئله واقعی', path:['فکر کردن با AI','کار کردن با AI','ساختن با AI'], note:'جلسه اول: سرفصل‌های ۱ تا ۶ — Think with AI. جلسه دوم: سرفصل‌های ۷ تا ۱۲ — Work with AI & Build with AI.'},
+ {title:'فروش با هوش مصنوعی', label:'توانمندی تخصصی فروش B2B', english:'SALES + AI', description:'بازطراحی فرایند فروش B2B با کمک هوش مصنوعی؛ از شناسایی حساب‌های هدف و شناخت مشتری تا جلسه فروش، ارزیابی فرصت و حافظه سازمانی در CRM.', meta:'۱۲ سرفصل · مسیر تخصصی دپارتمان فروش', result:'نقشه گردش‌کار Sales AI؛ از حساب هدف تا بهترین اقدام بعدی', path:['یافتن','شناختن','تعامل','پیشبرد','ثبت دانش','توسعه'], note:'بر پایه توانمندی‌های «انسان هوشران»؛ بدون تکرار پرامپت‌نویسی عمومی. برای زمان‌بندی و مدت برگزاری این مسیر با هوشران هماهنگ کنید.'}
+ ];
+ return <section className="hr-courses hr-shell" id="courses" aria-labelledby="courses-title">
+ <p className="hr-eyebrow">۰۳ / دو مسیر برای توانمند شدن</p><h2 id="courses-title">یادگیری، وقتی به <em>کار می‌آید.</em></h2>
+ <p className="hr-section-lead">از توانمندی‌های مشترک برای همکاری انسان و AI، تا کاربرد تخصصی در فروش سازمانی. هر سرفصل با یک تمرین واقعی و خروجی مشخص همراه است.</p>
+ <div className="hr-learning-grid">{courses.map((course,index)=><article key={course.title} className="hr-learning-card" onPointerMove={followPointer} onPointerLeave={event=>{event.currentTarget.style.setProperty('--rx','0deg');event.currentTarget.style.setProperty('--ry','0deg');}}>
+ <div className="hr-learning-cover"><div className="hr-learning-top"><span>{course.label}</span><span dir="ltr">0{index+1}</span></div><div className="hr-learning-word" dir="ltr" aria-hidden="true">{course.english}</div><h3>{course.title}</h3><p>{course.description}</p><span className="hr-learning-meta">{course.meta}</span>
+ <ol className="hr-learning-path">{course.path.map(step=><li key={step}>{step}</li>)}</ol></div>
+ <div className="hr-learning-body"><div className="hr-learning-output"><span>آنچه با خود می‌برید</span><strong>{course.result}</strong></div><p className="hr-learning-note">{course.note}</p>
+ <div className="hr-syllabus">{courseData[index].map((lesson,i)=><details key={lesson.title}><summary><span className="hr-number">{fa(i+1).padStart(2,'۰')}</span><span>{lesson.title}</span><span className="hr-details-plus" aria-hidden="true">+</span></summary><ul>{lesson.items.map(item=><li key={item}>{item}</li>)}</ul></details>)}</div>
+ <a className="hr-button" href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">{index===0?'اطلاعات دوره انسان هوشران':'هماهنگی دوره فروش سازمانی'} ↗</a></div></article>)}</div>
+ <div className="hr-teaching-method"><strong>از مفهوم تا توانمندی عملی</strong><p>در هر بخش: آشنایی با مفهوم، نمایش زنده، تمرین هدایت‌شده، مسئله واقعی و ارزیابی خروجی.</p></div>
  </section>;
 }
