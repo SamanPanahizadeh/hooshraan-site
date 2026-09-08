@@ -25,7 +25,7 @@ export function FutureSection() {
   </section>;
 }
 
-function followPointer(event: React.PointerEvent<HTMLElement>) {
+export function followPointer(event: React.PointerEvent<HTMLElement>) {
  if (event.pointerType !== 'mouse' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
  const card = event.currentTarget, box = card.getBoundingClientRect();
  const x = (event.clientX-box.left)/box.width, y = (event.clientY-box.top)/box.height;

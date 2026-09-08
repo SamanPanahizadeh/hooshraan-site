@@ -1,11 +1,11 @@
 import React from 'react';
 import { ArrowLeft, ArrowDown, Check } from 'lucide-react';
 
-import { FutureSection, CoursesSection } from './LandingContent';
+import { FutureSection, CoursesSection, followPointer } from './LandingContent';
 
 export function LandingPage() {
   return <div className="hr-landing">
-    <section className="hr-hero hr-shell" aria-labelledby="hero-title">
+    <section className="hr-hero hr-shell hr-hero-alive" aria-labelledby="hero-title" onPointerMove={followPointer} onPointerLeave={event => { event.currentTarget.style.setProperty("--rx", "0deg"); event.currentTarget.style.setProperty("--ry", "0deg"); event.currentTarget.style.setProperty("--mx", "30%"); event.currentTarget.style.setProperty("--my", "35%"); }}>
       <div className="hr-hero-copy"><p className="hr-eyebrow"><span />هوش مصنوعی در کار واقعی</p><h1 id="hero-title">ظرفیت بیشتر<br />برای <em>انسان.</em></h1><p className="hr-hero-description">با کمک هوش مصنوعی، کار را دوباره ببینیم؛<br className="hr-desktop-break" /> و برای فکر کردن، تصمیم گرفتن و خلق ارزش، جا باز کنیم.</p><p className="hr-hero-detail">هوشران به سازمان‌ها کمک می‌کند استفاده از هوش مصنوعی را به روشی عملی، آگاهانه و تکرارپذیر در کار تیم تبدیل کنند.</p><div className="hr-actions"><a className="hr-button" href="#/assessment">شروع ارزیابی سازمان<ArrowLeft size={19} /></a><a className="hr-text-link" href="#courses">آشنایی با دوره‌ها<ArrowDown size={16} /></a></div></div>
       
       <div className="hr-hero-bottom"><span>از ظرفیت فردی، تا قابلیت سازمانی</span><span dir="ltr">HUMAN + AI</span></div>
