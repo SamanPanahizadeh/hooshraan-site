@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
-import { ArrowUpLeft, Moon, Sun, Mail, Send } from 'lucide-react';
+import { ArrowUpLeft, Moon, Sun, Mail, Send, Linkedin } from 'lucide-react';
 import { LandingPage } from './components/LandingPage';
 import { useTheme } from './context/ThemeContext';
 import './landing.css';
@@ -22,6 +22,6 @@ export default function App() {
       <button className="hr-theme" onClick={toggleTheme} aria-label={theme === 'light' ? 'تغییر به حالت تیره' : 'تغییر به حالت روشن'}>{theme === 'light' ? <Moon size={19} /> : <Sun size={19} />}</button>
     </div></header>
     <main id="main-content" tabIndex={-1}>{assessment ? <div className="hr-assessment hr-shell"><Suspense fallback={<p role="status" className="hr-loading">در حال آماده‌سازی ارزیابی سازمانی…</p>}><OrganizationalDiagnostic /></Suspense></div> : <LandingPage />}</main>
-    <footer className="hr-footer hr-shell"><div><a className="hr-footer-name" href="#/">هوشران</a><p>همکاری انسان و هوش مصنوعی، در کار واقعی.</p></div><div className="hr-footer-links"><a href="mailto:info@houshraan.ir"><Mail size={16} /><span dir="ltr">info@houshraan.ir</span></a><a href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer"><Send size={16} />تلگرام<ArrowUpLeft size={14} /></a></div><span className="hr-copyright" dir="ltr">© {new Date().getFullYear()} Houshraan</span></footer>
+    <footer className="hr-footer hr-shell"><div><a className="hr-footer-name" href="#/">هوشران</a><p>همکاری انسان و هوش مصنوعی، در کار واقعی.</p></div><div className="hr-footer-links"><a href="mailto:info@houshraan.ir"><Mail size={16} /><span dir="ltr">info@houshraan.ir</span></a><a href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer"><Send size={16} />تلگرام<ArrowUpLeft size={14} /></a><a href="https://www.linkedin.com/company/houshraan" target="_blank" rel="noopener noreferrer"><Linkedin size={16} />لینکدین<ArrowUpLeft size={14} /></a></div><span className="hr-copyright" dir="ltr">© {new Date().getFullYear()} Houshraan</span></footer>
   </div>;
 }

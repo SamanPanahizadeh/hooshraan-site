@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import './assessment.css';
 import {
   HOOSHRAAN_DIMENSIONS_V11,
@@ -317,7 +317,27 @@ export const OrganizationalDiagnostic: React.FC = () => {
     setTempNaReason('');
   };
 
+  const questionHeadingRef = useRef<HTMLHeadingElement>(null);
+  const shouldScrollToQuestion = useRef(false);
+  const navigateToQuestion = (index: number) => {
+    shouldScrollToQuestion.current = true;
+    setActiveQuestionIndex(index);
+  };
+  useEffect(() => {
+    if (!shouldScrollToQuestion.current || step !== 'current_assessment') return;
+    shouldScrollToQuestion.current = false;
+    const heading = questionHeadingRef.current;
+    heading?.focus({ preventScroll: true });
+    heading?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }, [activeQuestionIndex, step]);
+
   const currentQuestion = HOOSHRAAN_QUESTIONS_V11[activeQuestionIndex] || HOOSHRAAN_QUESTIONS_V11[0];
+  const currentAnswer = responses[currentQuestion.code];
+  const canContinueQuestion = Boolean(
+    (typeof currentAnswer?.value === 'number' && Number.isInteger(currentAnswer.value) && currentAnswer.value >= 1 && currentAnswer.value <= 5) ||
+    currentAnswer?.value === 'unknown' ||
+    (currentAnswer?.value === 'NA' && currentAnswer.naReason?.trim())
+  );
   const currentDimension = HOOSHRAAN_DIMENSIONS_V11.find((d) => d.key === currentQuestion.dimensionKey) || HOOSHRAAN_DIMENSIONS_V11[0];
   const currentDimensionIndex = HOOSHRAAN_DIMENSIONS_V11.findIndex((d) => d.key === currentDimension.key);
   const currentDimensionQuestions = useMemo(() => {
@@ -659,8 +679,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                   onClick={() => {
                     const targetIdx = HOOSHRAAN_QUESTIONS_V11.findIndex((q) => q.dimensionKey === dim.key);
                     if (targetIdx !== -1) {
-                      setActiveQuestionIndex(targetIdx);
-                      window.scrollTo({ top: 120, behavior: 'smooth' });
+                      navigateToQuestion(targetIdx);
                     }
                   }}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shrink-0 cursor-pointer ${
@@ -748,7 +767,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
                 {currentValue === 'unknown' && <p role="status">این سؤال برای بازبینی نگه داشته می‌شود و امتیاز پایین محسوب نمی‌شود.</p>}
                 {/* Question Title */}
                 <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-black text-white leading-relaxed">
+                  <h3 ref={questionHeadingRef} tabIndex={-1} style={{ scrollMarginTop: "24px" }} className="text-xl sm:text-2xl font-black text-white leading-relaxed">
                     {currentQuestion.question}
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
@@ -880,8 +899,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
               disabled={activeQuestionIndex === 0}
               onClick={() => {
                 if (activeQuestionIndex > 0) {
-                  setActiveQuestionIndex(activeQuestionIndex - 1);
-                  window.scrollTo({ top: 120, behavior: 'smooth' });
+                  navigateToQuestion(activeQuestionIndex - 1);
                 }
               }}
               className={`px-5 py-3 font-bold rounded-2xl text-xs sm:text-sm transition flex items-center gap-2 border ${
@@ -900,9 +918,10 @@ export const OrganizationalDiagnostic: React.FC = () => {
               <button
                 type="button"
                 id="next-question-btn"
+                disabled={!canContinueQuestion}
                 onClick={() => {
-                  setActiveQuestionIndex(activeQuestionIndex + 1);
-                  window.scrollTo({ top: 120, behavior: 'smooth' });
+                  if (!canContinueQuestion) return;
+                  navigateToQuestion(activeQuestionIndex + 1);
                 }}
                 className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-2xl text-xs sm:text-sm transition shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer"
               >
@@ -913,7 +932,9 @@ export const OrganizationalDiagnostic: React.FC = () => {
               <button
                 type="button"
                 id="goto-target-step-btn"
+                disabled={!canContinueQuestion}
                 onClick={() => {
+                  if (!canContinueQuestion) return;
                   setStep('target_assessment');
                   window.scrollTo({ top: 120, behavior: 'smooth' });
                 }}

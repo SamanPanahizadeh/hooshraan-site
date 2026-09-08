@@ -17,3 +17,5 @@
 .assessment-question-nav{display:flex;justify-content:flex-start;gap:12px;background:var(--hr-paper);border-color:var(--hr-line)}
 .assessment-question-nav button{flex:0 1 auto;font-size:.875rem;justify-content:center}
 @media(max-width:480px){.assessment-question-nav{gap:8px;padding:12px}.assessment-question-nav button{padding:12px 10px;min-width:0}.assessment-question-nav svg{flex-shrink:0}}
+
+.hr-site .assessment-shell #next-question-btn:disabled,.hr-site .assessment-shell #goto-target-step-btn:disabled{background:var(--control-disabled-bg)!important;color:var(--control-disabled-ink)!important;border-color:var(--control-border)!important;filter:none;cursor:not-allowed}
