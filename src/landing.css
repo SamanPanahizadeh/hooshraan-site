@@ -36,7 +36,7 @@
 .hr-hero h1 em{color:var(--hr-muted)}.hr-hero-description{font-size:19px;max-width:590px}.hr-hero-detail{max-width:510px;font-size:15px}.hr-eyebrow{font-size:13px;letter-spacing:0}.hr-eyebrow>span{background:var(--hr-green);width:7px;height:7px;border-radius:50%}
 .hr-actions{margin-top:34px;gap:28px}.hr-button{border-radius:100px;padding-inline:26px}.hr-hero-bottom{margin-top:52px;padding-bottom:28px}
 .hr-orbit{position:relative;width:118%;margin:0 -8% 0 0;color:var(--hr-accent);min-width:0;align-self:center}
-.hr-orbit svg{width:100%;height:auto;display:block}.hr-orbit-lines{stroke:currentColor;stroke-width:.7;opacity:.38;transform-origin:350px 350px;animation:hr-orbit-turn 100s linear infinite}.hr-orbit-core{fill:var(--hr-bg);stroke:currentColor;stroke-width:.6}.hr-orbit-satellite{transform-origin:350px 350px;animation:hr-orbit-turn 32s linear infinite reverse}
+.hr-orbit>svg{width:100%;height:auto;display:block}.hr-orbit-lines{stroke:currentColor;stroke-width:.7;opacity:.38;transform-origin:350px 350px;animation:hr-orbit-turn 100s linear infinite}.hr-orbit-core{fill:var(--hr-bg);stroke:currentColor;stroke-width:.6}.hr-orbit-satellite{transform-origin:350px 350px;animation:hr-orbit-turn 32s linear infinite reverse}
 .hr-orbit[data-paused=true] :is(.hr-orbit-lines,.hr-orbit-satellite){animation-play-state:paused}
 .hr-orbit figcaption{display:flex;align-items:center;justify-content:center;gap:16px;color:var(--hr-muted);font-size:12px;margin-top:-30px}.hr-orbit button{display:grid;place-items:center;background:transparent;border:1px solid var(--hr-line);border-radius:50%;width:40px;height:40px;color:var(--hr-ink)}
 @keyframes hr-orbit-turn{to{transform:rotate(360deg)}}
