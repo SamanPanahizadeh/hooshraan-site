@@ -108,7 +108,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
       const saved = localStorage.getItem('hooshraan_active_q_idx_v11');
       if (saved !== null) {
         const parsed = parseInt(saved, 10);
-        if (!isNaN(parsed) && parsed >= 0 && parsed < HOOSHRAAN_QUESTIONS_V11.length) return { ...DEFAULT_ORG_PROFILE, ...parsed };
+        if (!isNaN(parsed) && parsed >= 0 && parsed < HOOSHRAAN_QUESTIONS_V11.length) return parsed;
       }
     } catch (e) {
       console.error(e);
