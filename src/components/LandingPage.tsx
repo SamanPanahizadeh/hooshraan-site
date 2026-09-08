@@ -1,36 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowDown, Check, FileText, Search, Mail, RotateCcw, Pause, Play, Focus, MessageCircle, Lightbulb } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, ArrowDown, Check, Pause, Play } from 'lucide-react';
 
 import { FutureSection, CoursesSection } from './LandingContent';
 
-const stages = ['کارهای روزمره', 'همکاری انسان و AI', 'ظرفیت برای کار ارزشمندتر'];
 function CapacityVisual() {
-  const [stage, setStage] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const sync = () => { setReduced(query.matches); if (query.matches) setStage(2); };
-    sync(); query.addEventListener('change', sync);
-    return () => query.removeEventListener('change', sync);
-  }, []);
-  useEffect(() => {
-    if (paused || reduced || stage === 2) return;
-    const timeout = window.setTimeout(() => setStage(s => s + 1), 2800);
-    return () => window.clearTimeout(timeout);
-  }, [paused, reduced, stage]);
-  return <figure className="hr-capacity" data-stage={stage} aria-label="نمایش مفهومی آزادسازی ظرفیت انسان با کمک هوش مصنوعی">
-    <div className="hr-visual-top"><span>یک نگاه تازه به کار</span><span className="hr-visual-index" dir="ltr">0{stage + 1} / 03</span></div>
-    <div className="hr-work-items">
-      <div className="hr-work-item"><Search size={18} /><span>جمع‌آوری اطلاعات</span><span className="hr-task-line" /></div>
-      <div className="hr-work-item"><FileText size={18} /><span>آماده‌سازی گزارش</span><span className="hr-task-line" /></div>
-      <div className="hr-work-item"><Mail size={18} /><span>نوشتن و پیگیری</span><span className="hr-task-line" /></div>
-    </div>
-    <div className="hr-connector" aria-hidden="true"><span /><ArrowDown size={17} /><span /></div>
-    <div className="hr-human-ai"><span className="hr-ai-label">کمک هوش مصنوعی</span><span className="hr-review"><Check size={15} />بازبینی و هدایت انسان</span></div>
-    <div className="hr-connector" aria-hidden="true"><span /><ArrowDown size={17} /><span /></div>
-    <div className="hr-capacity-result"><div className="hr-result-heading"><span className="hr-small-diamond" aria-hidden="true" /><span>جا برای کارهای ارزشمندتر</span></div><div className="hr-result-items"><span><Focus size={18} />تمرکز</span><span><Lightbulb size={18} />تصمیم بهتر</span><span><MessageCircle size={18} />ارتباط انسانی</span></div></div>
-    <figcaption className="hr-visual-caption"><div className="hr-stage-controls" aria-label="مراحل نمایش">{stages.map((label, i) => <button key={label} aria-label={label} aria-pressed={stage === i} onClick={() => { setStage(i); setPaused(true); }} className={stage === i ? 'is-active' : ''}><span /></button>)}</div><span>{stages[stage]}</span><button className="hr-replay" onClick={() => { if (stage === 2) { setStage(0); setPaused(reduced); } else setPaused(!paused); }} aria-label={stage === 2 ? 'بازپخش نمایش' : paused ? 'ادامه نمایش' : 'توقف نمایش'}>{stage === 2 ? <RotateCcw size={16} /> : paused ? <Play size={16} /> : <Pause size={16} />}</button></figcaption>
+  return <figure className="hr-orbit" data-paused={paused} aria-label="تصویر مفهومی پیوند توانمندی انسان و هوش مصنوعی">
+    <svg viewBox="0 0 700 700" fill="none" aria-hidden="true">
+      <defs><radialGradient id="hr-glow"><stop stopColor="currentColor" stopOpacity=".12"/><stop offset="1" stopColor="currentColor" stopOpacity="0"/></radialGradient></defs>
+      <circle cx="350" cy="350" r="340" fill="url(#hr-glow)"/>
+      <g className="hr-orbit-lines">{Array.from({length: 14}, (_, i) => <ellipse key={i} cx="350" cy="350" rx={120 + i * 10} ry={255 - i * 7} transform={`rotate(${i * 13} 350 350)`} />)}</g>
+      <circle cx="350" cy="350" r="66" className="hr-orbit-core"/>
+      <path d="M350 323L377 350L350 377L323 350Z" fill="currentColor" opacity=".9"/>
+      <g className="hr-orbit-satellite"><circle cx="350" cy="96" r="7" fill="currentColor"/><circle cx="350" cy="96" r="15" stroke="currentColor" opacity=".25"/></g>
+    </svg>
+    <figcaption><span>انسان، در مرکز تحول</span><button onClick={() => setPaused(!paused)} aria-label={paused ? 'ادامه حرکت تصویر' : 'توقف حرکت تصویر'} aria-pressed={paused}>{paused ? <Play size={16}/> : <Pause size={16}/>}</button></figcaption>
   </figure>;
 }
 export function LandingPage() {
