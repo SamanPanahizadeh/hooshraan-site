@@ -60,3 +60,9 @@
 @media(max-width:1050px){.hr-hero-alive{padding:48px 38px 0}}
 @media(max-width:760px){.hr-hero-alive{margin-top:18px;padding:34px 24px 0;border-radius:20px}.hr-site .hr-hero-alive h1{font-size:clamp(2.7rem,10.3vw,4.6rem)}.hr-hero-alive .hr-hero-bottom{gap:12px;font-size:11px;flex-wrap:wrap;padding-bottom:22px}}
 @media(hover:none),(prefers-reduced-motion:reduce){.hr-hero-alive{transform:none!important}}
+
+/* Matching interactive surface for the AI outlook. */
+.hr-outlook-alive{--mx:30%;--my:35%;--rx:0deg;--ry:0deg;position:relative;padding:64px;border:1px solid var(--hr-line);border-radius:26px;background:radial-gradient(ellipse at var(--mx) var(--my),#6bc9ab3b,transparent 62%),radial-gradient(ellipse at 95% 10%,#a5b4e93b,transparent 65%),var(--hr-panel);transform:perspective(2400px) rotateX(calc(var(--rx) * .4)) rotateY(calc(var(--ry) * .4));transition:transform .4s ease,box-shadow .4s ease;box-shadow:0 18px 60px #20264906;margin-bottom:64px}.hr-outlook-alive:hover{box-shadow:0 22px 70px #20264912}.hr-site[data-mode=dark] .hr-outlook-alive{background:radial-gradient(ellipse at var(--mx) var(--my),#54b5972b,transparent 62%),radial-gradient(ellipse at 95% 10%,#8194d32b,transparent 65%),var(--hr-panel)}
+@media(max-width:1050px){.hr-outlook-alive{padding:48px 38px}.hr-outlook-alive .hr-outlook-bottom{gap:30px}}
+@media(max-width:760px){.hr-outlook-alive{padding:34px 24px;border-radius:20px;margin-bottom:40px}.hr-outlook-alive .hr-evidence-grid{grid-template-columns:1fr;gap:24px}.hr-outlook-alive .hr-stat{padding:24px 0 0;border-inline-start:0;border-top:1px solid var(--hr-line)}.hr-outlook-alive .hr-stat:first-child{padding-top:0;border-top:0}}
+@media(hover:none),(prefers-reduced-motion:reduce){.hr-outlook-alive{transform:none!important}}

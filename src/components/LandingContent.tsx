@@ -8,7 +8,7 @@ function Source({ page, risk = false, figure }: { page: number; risk?: boolean; 
   return <a className="hr-source" href={`${risk ? risks : jobs}#page=${page}`} target="_blank" rel="noopener noreferrer">WEF · {risk ? 'Global Risks 2026' : 'Future of Jobs 2025'} · صفحه {fa(page)}{figure ? ` · شکل ${figure}` : ''} ↗</a>;
 }
 export function FutureSection() {
-  return <section className="hr-evidence hr-shell" id="ai-outlook" aria-labelledby="outlook-title">
+  return <section className="hr-evidence hr-shell hr-outlook-alive" onPointerMove={followPointer} onPointerLeave={event => { event.currentTarget.style.setProperty("--rx", "0deg"); event.currentTarget.style.setProperty("--ry", "0deg"); event.currentTarget.style.setProperty("--mx", "30%"); event.currentTarget.style.setProperty("--my", "35%"); }} id="ai-outlook" aria-labelledby="outlook-title">
     <p className="hr-eyebrow">۰۲ / آینده کار و استفاده آگاهانه</p>
     <h2 id="outlook-title">کار تغییر می‌کند.<br /><em>آمادگی را از امروز بسازیم.</em></h2>
     <p className="hr-section-lead">نگاهی به فرصت‌ها، نیازهای مهارتی و مخاطرات هوش مصنوعی بر پایه گزارش‌های مجمع جهانی اقتصاد.</p>
