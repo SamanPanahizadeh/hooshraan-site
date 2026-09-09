@@ -10,6 +10,11 @@ export function LandingPage() {
       
       <div className="hr-hero-bottom"><span>از ظرفیت فردی، تا قابلیت سازمانی</span><span dir="ltr">HUMAN + AI</span></div>
     </section>
+    <section className="hr-reflection hr-shell" aria-label="پرسشی برای تأمل">
+      <span className="hr-quote-mark" aria-hidden="true">“</span>
+      <blockquote>وقتی همه‌چیز طبق برنامه پیش نرفت،<br className="hr-quote-break" /> <strong>چطور فکر کنم و تصمیم بگیرم؟</strong></blockquote>
+      <span className="hr-quote-rule" aria-hidden="true" />
+    </section>
     <FutureSection />
     <CoursesSection />
     <section className="hr-assessment-intro hr-shell" aria-labelledby="assessment-title"><div className="hr-assessment-card"><div className="hr-assessment-copy"><h2 id="assessment-title">از کجا شروع کنیم؟<br /><em>با شناخت وضعیت امروز.</em></h2><p>ارزیابی هوشران کمک می‌کند تصویری از وضعیت فعلی سازمان و فاصله آن با هدفی که در نظر دارید به دست آورید.</p><a className="hr-button" href="#/assessment">ورود به ارزیابی سازمانی<ArrowLeft size={19} /></a></div><div className="hr-assessment-expectations"><div className="hr-assessment-count"><strong>۴۰</strong><span>مؤلفه رفتاری<br />در ۷ بُعد سازمانی</span></div><ul><li><Check size={17} />بررسی وضعیت فعلی و تعیین سطح هدف</li><li><Check size={17} />شناخت نقاط قوت و شکاف‌های اولویت‌دار</li><li><Check size={17} />گزارش و نقشه راه پیشنهادی ۹۰روزه</li></ul><p>نتیجه بر پایه پاسخ‌های شماست و نقطه شروعی برای بررسی دقیق‌تر سازمان محسوب می‌شود.</p></div></div></section>
