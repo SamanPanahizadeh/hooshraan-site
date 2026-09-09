@@ -647,7 +647,7 @@ export const OrganizationalDiagnostic: React.FC = () => {
 
       <aside className="assessment-help print:hidden">
         <div><strong>برای تکمیل فرم کمک می‌خواهید؟</strong><p>می‌توانید فرم را خودتان تکمیل کنید. اگر درباره سؤالی مطمئن نیستید، شماره آن را برای هوشران بفرستید تا راهنمایی‌تان کنیم.</p></div>
-        <a href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">درخواست راهنمایی در تلگرام ↗</a>
+        <a className="hr-telegram-help" href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">درخواست راهنمایی در تلگرام ↗</a>
       </aside>
       {step === 'profile' && <form className="assessment-panel" onSubmit={e => { e.preventDefault(); if (profileReady) setStep('current_assessment'); }}>
         <h2>درباره سازمان شما</h2><p>نتیجه بر اساس پاسخ‌های شما محاسبه می‌شود و تأیید یا ممیزی مستقل سازمان نیست.</p>
