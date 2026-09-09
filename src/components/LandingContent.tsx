@@ -48,7 +48,7 @@ export function CoursesSection() {
  <button className="hr-course-toggle" id={`course-toggle-${index}`} aria-expanded={openCourse===index} aria-controls={`course-panel-${index}`} onClick={()=>setOpenCourse(current=>current===index?null:index)}><span>{openCourse===index?'بستن سرفصل‌ها':'مشاهده سرفصل‌ها'}</span><span className="hr-toggle-symbol" aria-hidden="true">{openCourse===index?'−':'+'}</span><span className="sr-only">{course.title}</span></button>
  <div className="hr-course-disclosure" data-open={openCourse===index} id={`course-panel-${index}`} role="region" aria-labelledby={`course-toggle-${index}`} aria-hidden={openCourse!==index} inert={openCourse!==index}><div className="hr-course-disclosure-inner">
  <div className="hr-syllabus">{courseData[index].map((lesson,i)=><details key={lesson.title} style={{'--lesson-delay': `${i*25}ms`} as React.CSSProperties}><summary><span className="hr-number">{fa(i+1).padStart(2,'۰')}</span><span>{lesson.title}</span><span className="hr-details-plus" aria-hidden="true">+</span></summary><ul>{lesson.items.map(item=><li key={item}>{item}</li>)}</ul></details>)}</div></div></div>
- <a className="hr-button" href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">{index===0?'اطلاعات دوره انسان هوشران':'هماهنگی دوره فروش سازمانی'} ↗</a></div></article>)}</div>
+ <a className="hr-button" href="https://t.me/HoushRaan" target="_blank" rel="noopener noreferrer">{index===0?'اطلاعات دوره انسان هوشران':'هماهنگی دوره فروش سازمانی'} ↗</a></div></article>)}</div>
  <div className="hr-teaching-method"><strong>از مفهوم تا توانمندی عملی</strong><p>در هر بخش: آشنایی با مفهوم، نمایش زنده، تمرین هدایت‌شده، مسئله واقعی و ارزیابی خروجی.</p></div>
  </section>;
 }
