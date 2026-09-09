@@ -74,3 +74,5 @@
 @media(max-width:760px){.hr-header-inner{min-height:72px}.hr-landing section[id]{scroll-margin-top:92px}.hr-hero-alive{padding:28px 24px 0;margin-top:18px}.hr-hero-alive .hr-hero-copy{grid-template-columns:1fr;gap:0}.hr-hero-alive .hr-eyebrow{margin-bottom:12px}.hr-site .hr-hero-alive h1{font-size:clamp(2.5rem,9vw,3.6rem);margin-bottom:18px}.hr-hero-alive .hr-hero-description{font-size:16px}.hr-hero-alive .hr-actions{margin-top:18px}.hr-hero-alive .hr-hero-bottom{margin-top:22px;padding-block:16px}}
 
 .hr-header{position:fixed;inset:0 0 auto;width:100%}.hr-site{padding-top:83px}@media(max-width:760px){.hr-site{padding-top:73px}}@media print{.hr-site{padding-top:0}}
+
+.hr-approach{padding-block:24px}@media(max-width:760px){.hr-approach{padding-block:18px;gap:20px}}
