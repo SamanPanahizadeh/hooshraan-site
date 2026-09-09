@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import courseData from './courseData.json';
 
 const jobs = 'https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf';
@@ -33,9 +33,10 @@ export function followPointer(event: React.PointerEvent<HTMLElement>) {
  card.style.setProperty('--rx', `${(0.5-y)*3}deg`); card.style.setProperty('--ry', `${(x-0.5)*3}deg`);
 }
 export function CoursesSection() {
+ const [openCourse, setOpenCourse] = useState<number | null>(null);
  const courses = [
- {title:'انسان هوشران', label:'توانمندی فردی و حرفه‌ای', english:'HUMAN + AI', description:'پایه‌ای برای کار حرفه‌ای با هوش مصنوعی؛ از مدل ذهنی و مهندسی زمینه تا ارزیابی خروجی و ساخت دستیار. مبنای ورود به مسیرهای تخصصی دپارتمانی.', meta:'۱۲ سرفصل · ۴ ساعت · ۲ جلسه', result:'دستیار تخصصی، گردش‌کار یا طرح Agent برای یک مسئله واقعی', path:['فکر کردن با AI','کار کردن با AI','ساختن با AI'], note:'جلسه اول: سرفصل‌های ۱ تا ۶ — Think with AI. جلسه دوم: سرفصل‌های ۷ تا ۱۲ — Work with AI & Build with AI.'},
- {title:'فروش با هوش مصنوعی', label:'توانمندی تخصصی فروش B2B', english:'SALES + AI', description:'بازطراحی فرایند فروش B2B با کمک هوش مصنوعی؛ از شناسایی حساب‌های هدف و شناخت مشتری تا جلسه فروش، ارزیابی فرصت و حافظه سازمانی در CRM.', meta:'۱۲ سرفصل · مسیر تخصصی دپارتمان فروش', result:'نقشه گردش‌کار Sales AI؛ از حساب هدف تا بهترین اقدام بعدی', path:['یافتن','شناختن','تعامل','پیشبرد','ثبت دانش','توسعه'], note:'بر پایه توانمندی‌های «انسان هوشران»؛ بدون تکرار پرامپت‌نویسی عمومی. برای زمان‌بندی و مدت برگزاری این مسیر با هوشران هماهنگ کنید.'}
+ {title:'انسان هوشران', label:'توانمندی فردی و حرفه‌ای', english:'HUMAN + AI', description:'پایه‌ای برای کار حرفه‌ای با هوش مصنوعی؛ از مدل ذهنی و مهندسی زمینه تا ارزیابی خروجی و ساخت دستیار. مبنای ورود به مسیرهای تخصصی دپارتمانی.', meta:'۱۲ سرفصل · ۴ ساعت · ۲ جلسه', path:['فکر کردن با AI','کار کردن با AI','ساختن با AI']},
+ {title:'فروش با هوش مصنوعی', label:'توانمندی تخصصی فروش B2B', english:'SALES + AI', description:'بازطراحی فرایند فروش B2B با کمک هوش مصنوعی؛ از شناسایی حساب‌های هدف و شناخت مشتری تا جلسه فروش، ارزیابی فرصت و حافظه سازمانی در CRM.', meta:'۱۲ سرفصل · مسیر تخصصی دپارتمان فروش', path:['یافتن','شناختن','تعامل','پیشبرد','ثبت دانش','توسعه']}
  ];
  return <section className="hr-courses hr-shell" id="courses" aria-labelledby="courses-title">
  <h2 id="courses-title">یادگیری، وقتی به <em>کار می‌آید.</em></h2>
@@ -43,8 +44,10 @@ export function CoursesSection() {
  <div className="hr-learning-grid">{courses.map((course,index)=><article key={course.title} className="hr-learning-card" onPointerMove={followPointer} onPointerLeave={event=>{event.currentTarget.style.setProperty('--rx','0deg');event.currentTarget.style.setProperty('--ry','0deg');}}>
  <div className="hr-learning-cover"><div className="hr-learning-top"><span>{course.label}</span><span dir="ltr">0{index+1}</span></div><div className="hr-learning-word" dir="ltr" aria-hidden="true">{course.english}</div><h3>{course.title}</h3><p>{course.description}</p><span className="hr-learning-meta">{course.meta}</span>
  <ol className="hr-learning-path">{course.path.map(step=><li key={step}>{step}</li>)}</ol></div>
- <div className="hr-learning-body"><div className="hr-learning-output"><span>آنچه با خود می‌برید</span><strong>{course.result}</strong></div><p className="hr-learning-note">{course.note}</p>
- <div className="hr-syllabus">{courseData[index].map((lesson,i)=><details key={lesson.title}><summary><span className="hr-number">{fa(i+1).padStart(2,'۰')}</span><span>{lesson.title}</span><span className="hr-details-plus" aria-hidden="true">+</span></summary><ul>{lesson.items.map(item=><li key={item}>{item}</li>)}</ul></details>)}</div>
+ <div className="hr-learning-body">
+ <button className="hr-course-toggle" id={`course-toggle-${index}`} aria-expanded={openCourse===index} aria-controls={`course-panel-${index}`} onClick={()=>setOpenCourse(current=>current===index?null:index)}><span>{openCourse===index?'بستن سرفصل‌ها':'مشاهده سرفصل‌ها'}</span><span className="hr-toggle-symbol" aria-hidden="true">{openCourse===index?'−':'+'}</span><span className="sr-only">{course.title}</span></button>
+ <div className="hr-course-disclosure" data-open={openCourse===index} id={`course-panel-${index}`} role="region" aria-labelledby={`course-toggle-${index}`} aria-hidden={openCourse!==index} inert={openCourse!==index}><div className="hr-course-disclosure-inner">
+ <div className="hr-syllabus">{courseData[index].map((lesson,i)=><details key={lesson.title} style={{'--lesson-delay': `${i*25}ms`} as React.CSSProperties}><summary><span className="hr-number">{fa(i+1).padStart(2,'۰')}</span><span>{lesson.title}</span><span className="hr-details-plus" aria-hidden="true">+</span></summary><ul>{lesson.items.map(item=><li key={item}>{item}</li>)}</ul></details>)}</div></div></div>
  <a className="hr-button" href="https://t.me/HooshRaan" target="_blank" rel="noopener noreferrer">{index===0?'اطلاعات دوره انسان هوشران':'هماهنگی دوره فروش سازمانی'} ↗</a></div></article>)}</div>
  <div className="hr-teaching-method"><strong>از مفهوم تا توانمندی عملی</strong><p>در هر بخش: آشنایی با مفهوم، نمایش زنده، تمرین هدایت‌شده، مسئله واقعی و ارزیابی خروجی.</p></div>
  </section>;
