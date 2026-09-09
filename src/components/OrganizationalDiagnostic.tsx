@@ -570,10 +570,10 @@ export const OrganizationalDiagnostic: React.FC = () => {
             <button
               type="button"
               onClick={resetAllResponses}
-              className="px-4 py-2.5 bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white font-semibold rounded-2xl text-xs transition border border-white/10 flex items-center gap-2 cursor-pointer backdrop-blur-md"
+              className="hr-reset-glass"
               title="شروع مجدد ارزیابی از ابتدا"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-slate-400" />
+              <RefreshCw className="w-4 h-4" />
               <span>شروع مجدد</span>
             </button>
 

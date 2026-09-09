@@ -9,8 +9,8 @@ function Source({ page, risk = false, figure }: { page: number; risk?: boolean; 
 }
 export function FutureSection() {
   return <section className="hr-evidence hr-shell hr-outlook-alive" onPointerMove={followPointer} onPointerLeave={event => { event.currentTarget.style.setProperty("--rx", "0deg"); event.currentTarget.style.setProperty("--ry", "0deg"); event.currentTarget.style.setProperty("--mx", "30%"); event.currentTarget.style.setProperty("--my", "35%"); }} id="ai-outlook" aria-labelledby="outlook-title">
-    <p className="hr-eyebrow">۰۲ / آینده کار و استفاده آگاهانه</p>
-    <h2 id="outlook-title">کار تغییر می‌کند.<br /><em>آمادگی را از امروز بسازیم.</em></h2>
+    
+    <h2 id="outlook-title">کار تغییر می‌کند،<br /><em>آمادگی را از امروز بسازیم.</em></h2>
     <p className="hr-section-lead">نگاهی به فرصت‌ها، نیازهای مهارتی و مخاطرات هوش مصنوعی بر پایه گزارش‌های مجمع جهانی اقتصاد.</p>
     <div className="hr-evidence-grid">
       <article className="hr-stat"><strong className="hr-big-stat">۸۶٪</strong><h3>انتظار تحول در کسب‌وکار</h3><p>کارفرمایان پاسخ‌دهنده انتظار دارند هوش مصنوعی و پردازش اطلاعات تا ۲۰۳۰ کسب‌وکارشان را متحول کند.</p><Source page={11} figure="۱.۲" /></article>
@@ -38,7 +38,7 @@ export function CoursesSection() {
  {title:'فروش با هوش مصنوعی', label:'توانمندی تخصصی فروش B2B', english:'SALES + AI', description:'بازطراحی فرایند فروش B2B با کمک هوش مصنوعی؛ از شناسایی حساب‌های هدف و شناخت مشتری تا جلسه فروش، ارزیابی فرصت و حافظه سازمانی در CRM.', meta:'۱۲ سرفصل · مسیر تخصصی دپارتمان فروش', result:'نقشه گردش‌کار Sales AI؛ از حساب هدف تا بهترین اقدام بعدی', path:['یافتن','شناختن','تعامل','پیشبرد','ثبت دانش','توسعه'], note:'بر پایه توانمندی‌های «انسان هوشران»؛ بدون تکرار پرامپت‌نویسی عمومی. برای زمان‌بندی و مدت برگزاری این مسیر با هوشران هماهنگ کنید.'}
  ];
  return <section className="hr-courses hr-shell" id="courses" aria-labelledby="courses-title">
- <p className="hr-eyebrow">۰۳ / دو مسیر برای توانمند شدن</p><h2 id="courses-title">یادگیری، وقتی به <em>کار می‌آید.</em></h2>
+ <h2 id="courses-title">یادگیری، وقتی به <em>کار می‌آید.</em></h2>
  <p className="hr-section-lead">از توانمندی‌های مشترک برای همکاری انسان و AI، تا کاربرد تخصصی در فروش سازمانی. هر سرفصل با یک تمرین واقعی و خروجی مشخص همراه است.</p>
  <div className="hr-learning-grid">{courses.map((course,index)=><article key={course.title} className="hr-learning-card" onPointerMove={followPointer} onPointerLeave={event=>{event.currentTarget.style.setProperty('--rx','0deg');event.currentTarget.style.setProperty('--ry','0deg');}}>
  <div className="hr-learning-cover"><div className="hr-learning-top"><span>{course.label}</span><span dir="ltr">0{index+1}</span></div><div className="hr-learning-word" dir="ltr" aria-hidden="true">{course.english}</div><h3>{course.title}</h3><p>{course.description}</p><span className="hr-learning-meta">{course.meta}</span>
