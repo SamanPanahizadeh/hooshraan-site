@@ -10,9 +10,9 @@ export function LandingPage() {
       
       <div className="hr-hero-bottom"><span>از ظرفیت فردی، تا قابلیت سازمانی</span><span dir="ltr">HUMAN + AI</span></div>
     </section>
-    <section className="hr-reflection hr-shell" aria-label="پرسشی برای تأمل">
+    <section className="hr-reflection hr-shell" aria-label="هزینه یادگیری هوش مصنوعی">
       <span className="hr-quote-mark" aria-hidden="true">“</span>
-      <blockquote>وقتی همه‌چیز طبق برنامه پیش نرفت،<br className="hr-quote-break" /> <strong>چطور فکر کنم و تصمیم بگیرم؟</strong></blockquote>
+      <blockquote>هزینه‌ی یادگیری هوش مصنوعی، زمان است.<br className="hr-quote-break" /> <strong>هزینه‌ی یادنگرفتنش، جایگاه است.</strong></blockquote>
       <span className="hr-quote-rule" aria-hidden="true" />
     </section>
     <FutureSection />
