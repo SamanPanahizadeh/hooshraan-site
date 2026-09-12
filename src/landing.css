@@ -110,3 +110,4 @@
 
 /* Houshraan brand palette */
 .hr-site{--hr-bg:#fff;--hr-ink:#12335a;--hr-muted:#53657a;--hr-accent:#F1D302;--hr-green:#094D92;--hr-panel:#f5f8fc;--hr-line:#dce6f0;--hr-paper:#fff}.hr-site[data-mode=dark]{--hr-bg:#07182c;--hr-ink:#f7fbff;--hr-muted:#b5c5d8;--hr-accent:#F1D302;--hr-panel:#102b49;--hr-line:#284967}.hr-site .hr-button{background:#094D92;color:#fff!important}.hr-site .hr-landing em{color:#094D92}.hr-site .hr-eyebrow>span{background:#F1D302}.hr-site .hr-big-stat{color:#094D92}.hr-site .hr-risk{border-color:#F1D302}
+.scroll-reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.scroll-reveal.is-visible{opacity:1;transform:none}.hr-landing .hr-learning-card:nth-child(2){transition-delay:.12s}.hr-landing .hr-stat:nth-child(2){transition-delay:.1s}.hr-landing .hr-stat:nth-child(3){transition-delay:.2s}@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1;transform:none;transition:none}}
