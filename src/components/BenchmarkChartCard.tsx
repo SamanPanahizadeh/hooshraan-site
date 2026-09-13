@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, Clock, Sparkles } from 'lucide-react';
+import { Clock, Sparkles } from 'lucide-react';
 
 interface BenchmarkTab {
   id: string;
@@ -24,7 +24,7 @@ export const BenchmarkChartCard: React.FC = () => {
       label: 'تحلیل داده و گزارش‌نویسی',
       title: 'تهیه و بازبینی گزارش‌های جامع مدیریتی',
       description:
-        'با پیاده‌سازی متدولوژی پرامپت‌نویسی سیستماتیک هوشران، زمان جمع‌آوری داده، تحلیل الگوها و نگارش گزارش‌های تحلیلی تا ۷۵٪ کاهش یافته و خطاهای تایپی و آماری به حداقل می‌رسد.',
+        'با پیاده‌سازی متدولوژی پرامپت‌نویسی سیستماتیک هوشران، زمان جمع‌آوری داده، تحلیل الگوها و نگارش گزارش‌های تحلیلی تا ۷۵٪ کاهش یافته و خطاهای آماری به حداقل می‌رسد.',
       items: [
         {
           name: 'با مدل اجرایی هوشران (Human + AI)',
@@ -108,17 +108,17 @@ export const BenchmarkChartCard: React.FC = () => {
   const currentTab = tabs[activeTab];
 
   return (
-    <div className="cr-benchmark-card rounded-2xl border border-slate-800/80 bg-[#101625] p-6 sm:p-8 shadow-xl">
+    <div className="cr-benchmark-card rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#101625] p-6 sm:p-8 shadow-md dark:shadow-xl transition-colors duration-300">
       {/* Segmented Controls (Cerebrium Style) */}
-      <div className="flex flex-wrap items-center justify-start gap-2 p-1.5 rounded-xl bg-[#0b0f19] border border-slate-800/70 mb-8">
+      <div className="flex flex-wrap items-center justify-start gap-1.5 p-1.5 rounded-xl bg-slate-100 dark:bg-[#0b0f19] border border-slate-200 dark:border-slate-800/70 mb-8">
         {tabs.map((tab, idx) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(idx)}
             className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 ${
               activeTab === idx
-                ? 'bg-[#1e273c] text-white shadow-md border border-slate-700/60'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-white dark:bg-[#1e273c] text-slate-900 dark:text-white shadow-sm border border-slate-300/80 dark:border-slate-700/60 font-semibold'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
             }`}
           >
             {tab.label}
@@ -128,8 +128,12 @@ export const BenchmarkChartCard: React.FC = () => {
 
       {/* Title & Description */}
       <div className="mb-8">
-        <h4 className="text-lg sm:text-xl font-bold text-white mb-2">{currentTab.title}</h4>
-        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{currentTab.description}</p>
+        <h4 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2">
+          {currentTab.title}
+        </h4>
+        <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
+          {currentTab.description}
+        </p>
       </div>
 
       {/* Range Chart Items */}
@@ -139,11 +143,16 @@ export const BenchmarkChartCard: React.FC = () => {
             <div className="flex items-center justify-between gap-4 text-xs sm:text-sm">
               <div className="flex items-center gap-2">
                 {item.isHoushraan && (
-                  <Sparkles size={15} className="text-cyan-400 flex-shrink-0 animate-pulse" />
+                  <Sparkles
+                    size={15}
+                    className="text-cyan-600 dark:text-cyan-400 flex-shrink-0 animate-pulse"
+                  />
                 )}
                 <span
                   className={`font-medium ${
-                    item.isHoushraan ? 'text-cyan-300 font-bold' : 'text-slate-300'
+                    item.isHoushraan
+                      ? 'text-cyan-700 dark:text-cyan-300 font-bold'
+                      : 'text-slate-800 dark:text-slate-200'
                   }`}
                 >
                   {item.name}
@@ -152,8 +161,8 @@ export const BenchmarkChartCard: React.FC = () => {
               <span
                 className={`font-mono font-bold px-2 py-0.5 rounded text-xs ${
                   item.isHoushraan
-                    ? 'text-cyan-300 bg-cyan-950/40 border border-cyan-800/60'
-                    : 'text-slate-400 bg-slate-900/60'
+                    ? 'text-cyan-800 dark:text-cyan-300 bg-cyan-50 dark:bg-cyan-950/50 border border-cyan-200 dark:border-cyan-800/60'
+                    : 'text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-transparent'
                 }`}
               >
                 {item.value}
@@ -161,31 +170,35 @@ export const BenchmarkChartCard: React.FC = () => {
             </div>
 
             {/* Horizontal bar track */}
-            <div className="h-3 w-full rounded-full bg-[#090d16] p-0.5 overflow-hidden border border-slate-800/40">
+            <div className="h-3 w-full rounded-full bg-slate-100 dark:bg-[#090d16] p-0.5 overflow-hidden border border-slate-200 dark:border-slate-800/40">
               <div
                 className={`h-full rounded-full transition-all duration-700 ease-out ${
                   item.isHoushraan
-                    ? 'bg-gradient-to-l from-cyan-400 to-teal-400 shadow-[0_0_12px_rgba(0,240,255,0.4)]'
-                    : 'bg-slate-700'
+                    ? 'bg-gradient-to-l from-cyan-600 via-teal-500 to-cyan-500 dark:from-cyan-400 dark:to-teal-400 shadow-[0_0_12px_rgba(0,200,255,0.3)]'
+                    : 'bg-slate-300 dark:bg-slate-700'
                 }`}
                 style={{ width: `${item.percentage}%` }}
               />
             </div>
 
             {item.note && (
-              <p className="text-[11px] text-slate-500 font-light pr-1">{item.note}</p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-light pr-1">
+                {item.note}
+              </p>
             )}
           </div>
         ))}
       </div>
 
       {/* Footnote */}
-      <div className="mt-8 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
+      <div className="mt-8 pt-4 border-t border-slate-200 dark:border-slate-800/60 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
         <div className="flex items-center gap-2">
-          <Clock size={14} className="text-cyan-400" />
+          <Clock size={14} className="text-cyan-600 dark:text-cyan-400" />
           <span>سنجش میانگین بر پایه سناریوهای واقعی در شرکت‌های همکار</span>
         </div>
-        <span className="text-[11px] text-slate-400">منبع: متدولوژی آموزشی هوشران</span>
+        <span className="text-[11px] text-slate-500 dark:text-slate-400">
+          منبع: متدولوژی آموزشی هوشران
+        </span>
       </div>
     </div>
   );

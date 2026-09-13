@@ -120,7 +120,15 @@
 /* ==========================================================================
    CEREBRIUM-STYLE HIGH-TECH MINIMAL DESIGN SYSTEM (HOUSHRAAN AI)
    ========================================================================== */
-.hr-site,
+.hr-site {
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* DARK MODE */
 .hr-site[data-mode="dark"] {
   --hr-bg: #0a0e17;
   --hr-panel: #101625;
@@ -131,33 +139,71 @@
   --hr-accent: #00f0ff;
   background-color: #0a0e17 !important;
   color: #f1f5f9 !important;
-  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  letter-spacing: -0.015em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-.hr-site .hr-header {
+.hr-site[data-mode="dark"] .hr-header {
   background: rgba(10, 14, 23, 0.85) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.hr-site .hr-nav a {
+.hr-site[data-mode="dark"] .hr-nav a {
   color: #94a3b8 !important;
-  font-size: 14px;
-  transition: color 0.15s ease;
 }
 
-.hr-site .hr-nav a:hover,
-.hr-site .hr-nav a[aria-current="page"] {
+.hr-site[data-mode="dark"] .hr-nav a:hover,
+.hr-site[data-mode="dark"] .hr-nav a[aria-current="page"] {
   color: #ffffff !important;
 }
 
-.hr-site .hr-footer {
+.hr-site[data-mode="dark"] .hr-footer {
   background: #070a12;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+.hr-site[data-mode="dark"] .hr-footer-name {
+  color: #ffffff;
+}
+
+/* LIGHT MODE */
+.hr-site[data-mode="light"] {
+  --hr-bg: #f8fafc;
+  --hr-panel: #ffffff;
+  --hr-paper: #ffffff;
+  --hr-line: #e2e8f0;
+  --hr-ink: #0f172a;
+  --hr-muted: #475569;
+  --hr-accent: #0284c7;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.hr-site[data-mode="light"] .hr-header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.hr-site[data-mode="light"] .hr-nav a {
+  color: #64748b !important;
+}
+
+.hr-site[data-mode="light"] .hr-nav a:hover,
+.hr-site[data-mode="light"] .hr-nav a[aria-current="page"] {
+  color: #0f172a !important;
+}
+
+.hr-site[data-mode="light"] .hr-footer {
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+.hr-site[data-mode="light"] .hr-footer-name {
+  color: #0f172a;
 }
 
 /* Cerebrium Range Chart & Terminal Cards */
