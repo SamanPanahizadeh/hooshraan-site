@@ -118,153 +118,82 @@
 .hr-site{--hr-bg:#fff;--hr-ink:#102b4f;--hr-muted:#526579;--hr-accent:#F1D302;--hr-blue:#094D92;--hr-lilac:#eee6ff;--hr-orange:#ff6338}.hr-site .hr-hero-alive{position:relative;overflow:hidden;border-radius:0;border:0;background:linear-gradient(110deg,#fff 0 72%,var(--hr-lilac) 72%)}.hr-site .hr-hero-alive:before{content:'';position:absolute;inset:0 auto 0 0;width:10px;background:var(--hr-blue)}.hr-site .hr-hero-alive:after{content:'';position:absolute;right:-70px;top:-100px;width:280px;height:280px;border-radius:50%;background:var(--hr-accent);opacity:.9}.hr-site .hr-landing h1{font-size:clamp(3.7rem,7vw,7rem);letter-spacing:-.06em}.hr-site .hr-button{border-radius:0;background:var(--hr-blue);box-shadow:8px 8px 0 var(--hr-accent)}.hr-site .hr-reflection{background:var(--hr-lilac);max-width:none;width:100%;position:relative}.hr-site .hr-reflection:after{content:'';position:absolute;right:0;bottom:0;width:130px;height:130px;background:var(--hr-orange);border-radius:100% 0 0 0}.hr-site .hr-outlook-alive,.hr-site .hr-learning-card,.hr-site .hr-assessment-card{border-radius:0}.hr-site .hr-learning-cover{border-radius:0;background:linear-gradient(135deg,var(--hr-lilac),#fff)}.hr-site .hr-learning-card:nth-child(2) .hr-learning-cover{background:linear-gradient(135deg,#dff7fb,#fff)}.hr-site .hr-big-stat{font-size:clamp(4rem,8vw,7rem);font-weight:800}.hr-site .hr-assessment-card{background:var(--hr-blue);box-shadow:14px 14px 0 var(--hr-accent)}
 
 /* ==========================================================================
-   HIGH-TECH 3D SCROLL-DRIVEN LANDING SYSTEM (HOUSHRAAN AI)
+   CEREBRIUM-STYLE HIGH-TECH MINIMAL DESIGN SYSTEM (HOUSHRAAN AI)
    ========================================================================== */
-.hr-site[data-mode="dark"],
-.hr-site {
-  --hr-bg: #070a14;
-  --hr-panel: #0d1322;
-  --hr-paper: #111a2e;
-  --hr-line: #1e293b;
-  --hr-ink: #f8fafc;
+.hr-site,
+.hr-site[data-mode="dark"] {
+  --hr-bg: #0a0e17;
+  --hr-panel: #101625;
+  --hr-paper: #131b2e;
+  --hr-line: #1e273a;
+  --hr-ink: #ffffff;
   --hr-muted: #94a3b8;
-  --hr-cyan: #00f5ff;
-  --hr-purple: #a855f7;
-  background-color: #070a14 !important;
-  color: #f8fafc !important;
+  --hr-accent: #00f0ff;
+  background-color: #0a0e17 !important;
+  color: #f1f5f9 !important;
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hr-site .hr-header {
-  background: rgba(7, 10, 20, 0.8) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
+  background: rgba(10, 14, 23, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.hr-gradient-text {
-  background: linear-gradient(135deg, #00f5ff 0%, #38bdf8 50%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hr-site .hr-nav a {
+  color: #94a3b8 !important;
+  font-size: 14px;
+  transition: color 0.15s ease;
 }
 
-.hr-stat-glass-card {
-  position: relative;
-  padding: 32px 28px;
-  background: rgba(13, 19, 34, 0.65);
-  border: 1px solid rgba(56, 189, 248, 0.18);
-  border-radius: 20px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
+.hr-site .hr-nav a:hover,
+.hr-site .hr-nav a[aria-current="page"] {
+  color: #ffffff !important;
 }
 
-.hr-stat-glass-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 245, 255, 0.45);
-  box-shadow: 0 16px 40px rgba(0, 245, 255, 0.15);
+.hr-site .hr-footer {
+  background: #070a12;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.hr-stat-glow-blob {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 60%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+/* Cerebrium Range Chart & Terminal Cards */
+.cr-benchmark-card,
+.cr-terminal-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hr-stat-glass-card:hover .hr-stat-glow-blob {
-  opacity: 1;
+.cr-benchmark-card:hover,
+.cr-terminal-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
-.hr-stat-number-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 12px;
-}
-
-.hr-stat-number {
-  font-size: clamp(42px, 4vw, 56px);
-  font-weight: 800;
-  color: #00f5ff;
-  line-height: 1.1;
-  font-feature-settings: 'tnum';
-}
-
-.hr-stat-affix {
-  font-size: 26px;
-  font-weight: 700;
-  color: #38bdf8;
-}
-
-.hr-stat-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: #f1f5f9;
-  margin-bottom: 6px;
-}
-
-.hr-stat-desc {
-  font-size: 13px;
-  color: #94a3b8;
-  line-height: 1.7;
-}
-
-.hr-course-glass-card {
-  position: relative;
-  border-radius: 24px;
-  background: rgba(13, 19, 34, 0.7);
-  border: 1px solid rgba(56, 189, 248, 0.16);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-.hr-course-glass-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(0, 245, 255, 0.4);
-}
-
-.hr-glow-btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.hr-glow-btn::after {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: rotate(25deg) translateY(-100%);
-  transition: transform 0.7s ease;
-}
-
-.hr-glow-btn:hover::after {
-  transform: rotate(25deg) translateY(100%);
-}
-
-.hr-site .hr-evidence,
-.hr-site .hr-courses {
-  border-top-color: rgba(30, 41, 59, 0.7);
+/* WEF Evidence Section Harmonization */
+.hr-site .hr-evidence {
+  background: #080c16;
+  border-top: 1px solid #1a2234;
 }
 
 .hr-site .hr-stat {
-  background: rgba(13, 19, 34, 0.6) !important;
-  border-color: rgba(30, 41, 59, 0.8) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #0e1424 !important;
+  border: 1px solid #1e283c !important;
+  border-radius: 16px;
 }
 
 .hr-site .hr-big-stat {
-  color: #00f5ff !important;
+  color: #00f0ff !important;
+  font-family: 'Vazirmatn', sans-serif;
+  font-weight: 800;
+}
+
+.hr-site .hr-task-chart {
+  background: #0e1424;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #1e283c;
 }
 
 .hr-site .hr-source {
@@ -272,7 +201,9 @@
 }
 
 .hr-site .hr-risk {
-  background: rgba(13, 19, 34, 0.5) !important;
-  border-color: #a855f7 !important;
+  background: #0e1424 !important;
+  border-inline-start: 3px solid #00f0ff !important;
+  border-radius: 12px;
 }
+
 
