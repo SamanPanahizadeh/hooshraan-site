@@ -1810,10 +1810,18 @@ textarea.form-control {
 
 .report-header {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 30px;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--color-border);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.report-header-top {
+    width: 100%;
 }
 
 .report-tag {
@@ -1821,24 +1829,56 @@ textarea.form-control {
     color: #D97706;
     font-weight: 700;
     font-size: 0.88rem;
-    margin-bottom: 6px;
-}
-
-.report-title {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    color: var(--color-primary);
     margin-bottom: 8px;
 }
 
+.report-title {
+    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+    color: var(--color-primary);
+    margin-bottom: 12px;
+    line-height: 1.35;
+    font-weight: 900;
+    width: 100%;
+}
+
 .report-meta {
-    font-size: 0.92rem;
+    font-size: 0.94rem;
     color: var(--color-text-muted);
+    line-height: 1.8;
 }
 
 .report-header-actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
+    align-items: center;
+    width: 100%;
+    padding: 16px 20px;
+    background: #F8FAFC;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-sizing: border-box;
 }
+
+.report-header-actions .btn {
+    white-space: normal;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .report-header-actions {
+        flex-direction: column !important;
+        padding: 14px !important;
+        gap: 10px !important;
+    }
+    .report-header-actions .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        min-height: 46px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
 
 /* کارت شاخص و نمره کل */
 .report-hero-card {
