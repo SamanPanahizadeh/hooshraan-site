@@ -672,7 +672,7 @@ function renderSingleQuestion(container) {
                         const isChecked = currentAnswer === lvl;
 
                         return `
-                            <label class="q-option-item ${isChecked ? 'is-selected' : ''}" onclick="selectLevel('${q.code}', ${lvl})">
+                            <label class="q-option-item ${isChecked ? 'is-selected' : ''}" data-lvl="${lvl}" onclick="selectLevel('${q.code}', ${lvl})">
                                 <div class="q-radio-indicator">
                                     <span class="q-radio-circle"></span>
                                 </div>
@@ -808,18 +808,54 @@ window.selectLevel = function(code, lvl) {
     state.answers[code] = lvl;
     delete state.naReasons[code];
     saveState();
-    
-    const container = document.getElementById('assessment-app');
-    renderSingleQuestion(container);
 
-    // انتقال بلادرنگ فوکوس و اسکرول نرم به روی دکمه سوال بعدی
-    setTimeout(() => {
-        const nextBtn = document.getElementById('btn-next-q');
-        if (nextBtn) {
-            nextBtn.focus({ preventScroll: true });
-            nextBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-    }, 40);
+    // ۱. به‌روزرسانی سریع کلاس‌های انتخابی در DOM بدون تخریب عناصر
+    const allOptions = document.querySelectorAll('.q-option-item');
+    allOptions.forEach(el => el.classList.remove('is-selected'));
+
+    const selectedOpt = document.querySelector(`.q-option-item[data-lvl="${lvl}"]`);
+    if (selectedOpt) {
+        selectedOpt.classList.add('is-selected');
+    }
+
+    // ۲. پنهان‌سازی بخش N/A در صورت باز بودن
+    const naBox = document.getElementById('na-reason-box');
+    if (naBox) naBox.style.display = 'none';
+    const naContainer = document.querySelector('.q-na-container');
+    if (naContainer) naContainer.classList.remove('is-na-active');
+
+    // ۳. فعال‌سازی دکمه سوال بعدی و حذف اخطار اعتبارسنجی
+    const nextBtn = document.getElementById('btn-next-q');
+    const alertEl = document.getElementById('q-validation-msg');
+    if (alertEl) alertEl.style.display = 'none';
+
+    if (nextBtn) {
+        nextBtn.removeAttribute('disabled');
+        nextBtn.classList.add('btn--ready-active');
+
+        // ۴. اسکرول مطمئن و نرم به سمت دکمه سوال بعدی (سازگار با تمام مرورگرهای موبایل و وب‌ویو)
+        setTimeout(() => {
+            // روش اول: scrollIntoView
+            try {
+                nextBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } catch (e) {}
+
+            // روش دوم: محاسبه مطلق پیکسلی برای مرورگرهایی مثل iOS Safari و Chrome Mobile
+            try {
+                const rect = nextBtn.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                const targetY = rect.top + scrollTop - (window.innerHeight / 2) + 40;
+                window.scrollTo({
+                    top: Math.max(0, targetY),
+                    behavior: 'smooth'
+                });
+            } catch (e) {}
+
+            try {
+                nextBtn.focus();
+            } catch (e) {}
+        }, 40);
+    }
 };
 
 // انتخاب N/A
