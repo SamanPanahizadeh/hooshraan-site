@@ -806,13 +806,20 @@ function renderSingleQuestion(container) {
 // انتخاب سطح ۱ تا ۵
 window.selectLevel = function(code, lvl) {
     state.answers[code] = lvl;
-    // اگر قبلاً NA بوده، از NA خارج شود
     delete state.naReasons[code];
     saveState();
     
-    // به‌روزرسانی درجا بدون رندر مجدد کامل تا تداخل پرش ایجاد نشود
     const container = document.getElementById('assessment-app');
     renderSingleQuestion(container);
+
+    // انتقال بلادرنگ فوکوس و اسکرول نرم به روی دکمه سوال بعدی
+    setTimeout(() => {
+        const nextBtn = document.getElementById('btn-next-q');
+        if (nextBtn) {
+            nextBtn.focus({ preventScroll: true });
+            nextBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }, 40);
 };
 
 // انتخاب N/A
@@ -986,7 +993,7 @@ function renderReport(container) {
     container.innerHTML = `
         <div class="report-wrapper" data-aos="fade-up">
             <div class="report-header">
-                <div>
+                <div class="report-header-top">
                     <span class="report-tag">گزارش رسمی سنجش آمادگی هوش مصنوعی</span>
                     <h1 class="report-title">کارنامه بلوغ هوش مصنوعی: ${state.orgInfo.orgName || 'سازمان شما'}</h1>
                     <p class="report-meta">
