@@ -1,21 +1,705 @@
-<!doctype html>
-<html lang="fa" dir="rtl" class="overflow-x-hidden">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>هوشران | ظرفیت بیشتر برای انسان، با هوش مصنوعی</title>
-    <meta name="description" content="هوشران؛ همکاری انسان و هوش مصنوعی در کار واقعی. معرفی رویکرد و ارزیابی سازمانی." />
-    <link rel="icon" type="image/png" href="/houshran_logo_transparent.png" />
-    <link rel="apple-touch-icon" href="/houshran_logo_transparent.png" />
-    <link rel="preload" href="/fonts/Vazirmatn-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/Vazirmatn-Medium.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/Vazirmatn-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-  </head>
-  <body class="font-sans antialiased bg-slate-50 dark:bg-[#0a0e17] text-slate-900 dark:text-slate-100 min-h-screen w-full overflow-x-hidden selection:bg-cyan-500/20 selection:text-cyan-800 dark:selection:bg-cyan-500/30 dark:selection:text-cyan-200">
-    <div id="root" class="w-full overflow-x-hidden"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <meta name="description" content="هوشران؛ همکاری انسان و هوش مصنوعی در کار واقعی. دوره‌های کاربردی، بازطراحی فرایندها و ارزیابی سازمانی برای استفاده مسئولانه و ارزش‌آفرین از هوش مصنوعی.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="هوشران, هوش مصنوعی, دوره انسان هوشران, فروش سازمانی, ارزیابی سازمانی, AI, هوش مصنوعی در کسب و کار">
+    
+    <!-- آیکون‌ها -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+
+    <!-- فونت‌های سلف‌هاست‌شده محلی -->
+    <link rel="preload" href="assets/fonts/Vazirmatn-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="assets/fonts/Vazirmatn-Medium.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="assets/fonts/Vazirmatn-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+    <!-- استایل‌ها -->
+    <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- ===================== ناوبار چسبان شیشه‌ای ===================== -->
+    <header class="navbar">
+        <div class="container navbar__inner">
+            <a href="#hero" class="navbar__brand">
+                <img src="assets/images/logo.png" alt="هوشران" class="navbar__logo">
+            </a>
+
+            <nav class="navbar__menu">
+                <a href="#hero" class="navbar__link">صفحه اصلی</a>
+                <a href="#about" class="navbar__link">رویکرد هوشران</a>
+                <a href="#programs" class="navbar__link">دوره‌ها و خدمات</a>
+                <a href="#syllabus" class="navbar__link">سرفصل‌ها</a>
+                <a href="assessment.html" class="navbar__link">ارزیابی سازمانی</a>
+                <a href="#contact" class="navbar__link">تماس و مشاوره</a>
+            </nav>
+
+            <div class="navbar__actions">
+                <a href="assessment.html" class="btn btn--primary btn--sm">شروع ارزیابی</a>
+                <button class="navbar__toggle" aria-label="منوی موبایل">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===================== بخش قهرمان (Hero Section) ===================== -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero__grid">
+                    <div class="hero__content" data-aos="fade-up">
+                        <h1 class="hero__title">
+                            ظرفیت بیشتر برای انسان،<br>
+                            <span>با هوش مصنوعی</span>
+                        </h1>
+
+                        <p class="hero__desc">
+                            با کمک هوش مصنوعی، کار را دوباره ببینیم؛ و برای فکر کردن، تصمیم گرفتن و خلق ارزش، جا باز کنیم. هوشران به سازمان‌ها و افراد کمک می‌کند استفاده از هوش مصنوعی را به روشی عملی، آگاهانه و تکرارپذیر در کار روزمره تیم تبدیل کنند.
+                        </p>
+
+                        <div class="hero__actions">
+                            <a href="assessment.html" class="btn btn--primary">
+                                ورود به ارزیابی سازمانی
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                            </a>
+                            <a href="#programs" class="btn btn--outline">
+                                آشنایی با دوره انسان هوشران
+                            </a>
+                        </div>
+
+                        <div class="hero__features">
+                            <div class="hero__feature-item">
+                                <svg class="hero__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <span>مدل ذهنی درست و مهندسی زمینه</span>
+                            </div>
+                            <div class="hero__feature-item">
+                                <svg class="hero__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <span>مقابله با خطای هوش مصنوعی و ارزیابی شواهد</span>
+                            </div>
+                            <div class="hero__feature-item">
+                                <svg class="hero__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                <span>خروجی ساختاریافته و دستیار پایدار</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero__showcase" data-aos="fade-up" data-aos-delay="150">
+                        <div class="hero__visual-container">
+                            <!-- المان گرافیکی / متحرک هیرو هوشران -->
+                            <div class="hero__visual-art">
+                                <!-- جلوه هاله نورانی پشت انیمیشن -->
+                                <div class="hero__glow-sphere"></div>
+
+                                <!-- انیمیشن وکتوری شبکه هوش مصنوعی و انسان (SVG متحرک لوکس) -->
+                                <svg class="hero__neural-art" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- مدارهای پس‌زمینه -->
+                                    <g opacity="0.35" stroke="#EAB308" stroke-width="1.5" stroke-dasharray="4 4">
+                                        <circle cx="250" cy="190" r="160" />
+                                        <circle cx="250" cy="190" r="110" />
+                                        <circle cx="250" cy="190" r="60" />
+                                    </g>
+
+                                    <!-- خطوط پیوند نودها -->
+                                    <g stroke="#F59E0B" stroke-width="2" opacity="0.7">
+                                        <line x1="250" y1="190" x2="150" y2="100" class="neural-line line-1" />
+                                        <line x1="250" y1="190" x2="350" y2="100" class="neural-line line-2" />
+                                        <line x1="250" y1="190" x2="130" y2="230" class="neural-line line-3" />
+                                        <line x1="250" y1="190" x2="370" y2="230" class="neural-line line-4" />
+                                        <line x1="250" y1="190" x2="200" y2="310" class="neural-line line-5" />
+                                        <line x1="250" y1="190" x2="300" y2="310" class="neural-line line-6" />
+                                    </g>
+
+                                    <!-- هسته مرکزی هوش مصنوعی هوشران -->
+                                    <g class="neural-core">
+                                        <circle cx="250" cy="190" r="44" fill="url(#coreGradient)" />
+                                        <circle cx="250" cy="190" r="52" stroke="#FACC15" stroke-width="2" opacity="0.5" class="pulse-ring" />
+                                        <!-- نماد هوش مصنوعی / مغز هوشمند -->
+                                        <path d="M236 180C236 172.268 242.268 166 250 166C257.732 166 264 172.268 264 180C264 184.2 262.1 187.9 259 190.4V197C259 198.1 258.1 199 257 199H243C241.9 199 241 198.1 241 197V190.4C237.9 187.9 236 184.2 236 180Z" fill="#18181B" stroke="#18181B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M245 204H255" stroke="#18181B" stroke-width="2.5" stroke-linecap="round"/>
+                                    </g>
+
+                                    <!-- نودهای متحرک و شناور اطراف -->
+                                    <g class="neural-nodes">
+                                        <!-- نود ۱: انسان و قضاوت -->
+                                        <g class="float-node node-a" transform="translate(0, 0)">
+                                            <circle cx="150" cy="100" r="28" fill="#FFFFFF" stroke="#EAB308" stroke-width="2.5" filter="url(#nodeShadow)" />
+                                            <path d="M142 108C142 103.582 145.582 100 150 100C154.418 100 158 103.582 158 108" stroke="#18181B" stroke-width="2" stroke-linecap="round"/>
+                                            <circle cx="150" cy="94" r="4" fill="#18181B"/>
+                                        </g>
+
+                                        <!-- نود ۲: دستیار هوشمند و Agent -->
+                                        <g class="float-node node-b">
+                                            <circle cx="350" cy="100" r="28" fill="#FFFFFF" stroke="#EAB308" stroke-width="2.5" filter="url(#nodeShadow)" />
+                                            <path d="M344 96L350 90L356 96M344 104L350 110L356 104" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+
+                                        <!-- نود ۳: تحلیل داده و بینش -->
+                                        <g class="float-node node-c">
+                                            <circle cx="130" cy="230" r="24" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2" filter="url(#nodeShadow)" />
+                                            <path d="M125 235V229M130 235V224M135 235V227" stroke="#18181B" stroke-width="2" stroke-linecap="round"/>
+                                        </g>
+
+                                        <!-- نود ۴: فروش سازمانی و CRM -->
+                                        <g class="float-node node-d">
+                                            <circle cx="370" cy="230" r="24" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2" filter="url(#nodeShadow)" />
+                                            <circle cx="370" cy="230" r="6" stroke="#D97706" stroke-width="2"/>
+                                            <path d="M370 220V222M370 238V240M360 230H362M378 230H380" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+                                        </g>
+
+                                        <!-- نود ۵: ارزیابی سازمانی -->
+                                        <g class="float-node node-e">
+                                            <circle cx="200" cy="310" r="22" fill="#FFFFFF" stroke="#EAB308" stroke-width="2" filter="url(#nodeShadow)" />
+                                            <path d="M196 310L199 313L205 307" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+
+                                        <!-- نود ۶: پایش شواهد و امنیت -->
+                                        <g class="float-node node-f">
+                                            <circle cx="300" cy="310" r="22" fill="#FFFFFF" stroke="#EAB308" stroke-width="2" filter="url(#nodeShadow)" />
+                                            <path d="M296 308C296 305 300 304 300 304C300 304 304 305 304 308C304 312 300 315 300 315C300 315 296 312 296 308Z" stroke="#D97706" stroke-width="1.8" stroke-linejoin="round"/>
+                                        </g>
+                                    </g>
+
+                                    <!-- تعریف گرادیانت‌ها و فیلترها -->
+                                    <defs>
+                                        <linearGradient id="coreGradient" x1="206" y1="146" x2="294" y2="234" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#FDE047" />
+                                            <stop offset="50%" stop-color="#FACC15" />
+                                            <stop offset="100%" stop-color="#EAB308" />
+                                        </linearGradient>
+                                        <filter id="nodeShadow" x="90" y="60" width="320" height="280" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                            <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#EAB308" flood-opacity="0.18" />
+                                        </filter>
+                                    </defs>
+                                </svg>
+
+                                <!-- بج‌های نشانگر زنده در اطراف تصویر متحرک -->
+                                <div class="hero__chip hero__chip--top">
+                                    <span class="hero__chip-dot"></span>
+                                    همکاری انسان و هوش مصنوعی
+                                </div>
+                                <div class="hero__chip hero__chip--bottom">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    استفاده مبتنی بر شواهد
+                                </div>
+                            </div>
+
+                            <!-- کارت شناور شیشه‌ای حاوی جمله راهبردی هوشران -->
+                            <div class="hero__floating-quote">
+                                <div class="hero__floating-quote-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 1-1 2v3c0 1.25.75 2 2 2zm13 0c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 1-1 2v3c0 1.25.75 2 2 2z"></path></svg>
+                                </div>
+                                <p class="hero__floating-quote-text">
+                                    «هزینه یادگیری هوش مصنوعی، زمان است.<br>
+                                    <strong>هزینه یادنگرفتنش، آینده کاری شما است.</strong>»
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== نوار آمار و شواهد کلیدی ===================== -->
+        <section class="stats-band">
+            <div class="container">
+                <div class="stats-band__grid">
+                    <div class="stats-band__item" data-aos="fade-up">
+                        <div class="stats-band__number">۸۵٪</div>
+                        <div class="stats-band__title">انتظار تحول در کسب‌وکار</div>
+                        <div class="stats-band__caption">کارفرمایان انتظار دارند هوش مصنوعی تا ۲۰۳۰ کارشان را دگرگون کند</div>
+                    </div>
+                    <div class="stats-band__item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stats-band__number">۷۰٪</div>
+                        <div class="stats-band__title">آموزش برای همکاری</div>
+                        <div class="stats-band__caption">برنامه‌ریزی مدیران برای ارتقای مهارت کارکنان در کنار هوش مصنوعی</div>
+                    </div>
+                    <div class="stats-band__item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stats-band__number">۴۸٪</div>
+                        <div class="stats-band__title">سهم همکاری انسان و فناوری</div>
+                        <div class="stats-band__caption">افزایش چشمگیر وظایف ترکیبی انسان همراه با الگوریتم‌های هوشمند</div>
+                    </div>
+                    <div class="stats-band__item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stats-band__number">۱۰۰٪</div>
+                        <div class="stats-band__title">حفظ قضاوت و مسئولیت</div>
+                        <div class="stats-band__caption">تعریف مسئله، سنجش شواهد و تأیید نهایی بر عهده خرد انسانی است</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== فلسفه و رویکرد هوشران ===================== -->
+        <section class="philosophy" id="about">
+            <div class="container">
+                <div class="philosophy__box" data-aos="zoom-in">
+                    <span class="section__tag">یک ملاحظه انسانی</span>
+                    <h2 class="philosophy__quote">
+                        «قضاوت خودمان را <span>حفظ کنیم</span>»
+                    </h2>
+                    <p class="philosophy__desc">
+                        گزارش ریسک‌های جهانی ۲۰۲۶ به خطر وابستگی بیش از حد به هوش مصنوعی و تضعیف تفکر انتقادی هشدار می‌دهد. در رویکرد هوشران، به جای اعتماد کورکورانه، استفاده مبتنی بر شواهد آموزش داده می‌شود؛ انسان در جایگاه ناظر آگاه، هدایت‌کننده و تصمیم‌گیرنده باقی می‌ماند.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ===================== دوره‌ها و خدمات تخصصی ===================== -->
+        <section class="programs" id="programs">
+            <div class="container">
+                <div class="section__head" data-aos="fade-up">
+                    <span class="section__tag">خدمات و دوره‌های آموزشی</span>
+                    <h2 class="section__title">از توانمندی فردی، تا قابلیت سازمانی</h2>
+                    <p class="section__desc">
+                        یادگیری، وقتی به کار می‌آید که در عمل دیده شود؛ از مهارت‌های مشترک همکاری انسان و هوش مصنوعی، تا بازطراحی تخصصی فرایندها.
+                    </p>
+                </div>
+
+                <div class="programs__grid">
+                    <!-- برنامه ۱: انسان هوشران -->
+                    <div class="program-card" data-aos="fade-up">
+                        <span class="program-card__badge program-card__badge--blue">توانمندی فردی و حرفه‌ای</span>
+                        <div class="program-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <h3 class="program-card__title">دوره انسان هوشران</h3>
+                        <p class="program-card__desc">
+                            کار حرفه‌ای با هوش مصنوعی؛ از مدل ذهنی و مهندسی زمینه تا ارزیابی خروجی، مقابله با خطای مدل و ساخت دستیارهای هوشمند پایدار. مبنایی مستحکم برای ورود به مسیرهای تخصصی دپارتمانی.
+                        </p>
+                        <ul class="program-card__list">
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>فکر کردن و ساختاربندی مسئله با هوش مصنوعی</span>
+                            </li>
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>مهندسی پرامپت حرفه‌ای و هدایت گام‌به‌گام</span>
+                            </li>
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>ساخت دستیار هوشمند اختصاصی با رفتار پایدار</span>
+                            </li>
+                        </ul>
+                        <a href="#syllabus" class="btn btn--outline btn--sm" style="width: 100%;">مشاهده سرفصل‌های دوره</a>
+                    </div>
+
+                    <!-- برنامه ۲: فروش با هوش مصنوعی -->
+                    <div class="program-card" data-aos="fade-up" data-aos-delay="100">
+                        <span class="program-card__badge program-card__badge--teal">توانمندی تخصصی فروش</span>
+                        <div class="program-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <h3 class="program-card__title">فروش با هوش مصنوعی</h3>
+                        <p class="program-card__desc">
+                            بازطراحی فرایند فروش B2B؛ از شناسایی حساب‌های هدف و تحلیل مشتری تا آماده‌سازی جلسه، ارزیابی فرصت و ایجاد حافظه سازمانی هوشمند برای تیم فروش.
+                        </p>
+                        <ul class="program-card__list">
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>شناسایی و امتیازدهی به حساب‌های ارزشمند</span>
+                            </li>
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>تفکیک گفته مشتری از حدس فروشنده در جلسات</span>
+                            </li>
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>تبدیل اطلاعات به حافظه ساختاریافته فروش</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="btn btn--outline btn--sm" style="width: 100%;">هماهنگی دوره سازمانی</a>
+                    </div>
+
+                    <!-- برنامه ۳: ارزیابی سازمانی -->
+                    <div class="program-card" data-aos="fade-up" data-aos-delay="200">
+                        <span class="program-card__badge program-card__badge--purple">تحول سازمانی</span>
+                        <div class="program-card__icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </div>
+                        <h3 class="program-card__title">ارزیابی سازمانی هوشران</h3>
+                        <p class="program-card__desc">
+                            ارزیابی هوشران تصویری شفاف از وضعیت فعلی سازمان و فاصله آن با وضعیت مطلوب ارائه می‌دهد؛ شناسایی شکاف‌های اولویت‌دار و نقشه راه ۹۰ روزه اختصاصی.
+                        </p>
+                        <ul class="program-card__list">
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>پایش بیش از ۵۰ مؤلفه رفتاری در ۷ بُعد سازمانی</span>
+                            </li>
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>شناسایی نقاط قوت، گلوگاه‌ها و شکاف‌های مهارتی</span>
+                            </li>
+                            <li class="program-card__item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>نقشه راه پیشنهادی ۹۰روزه متناسب با نیاز سازمان</span>
+                            </li>
+                        </ul>
+                        <a href="assessment.html" class="btn btn--accent btn--sm" style="width: 100%;">شروع ارزیابی سازمانی</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== سرفصل‌های تعاملی دوره انسان هوشران ===================== -->
+        <section class="syllabus" id="syllabus">
+            <div class="container">
+                <div class="section__head" data-aos="fade-up">
+                    <span class="section__tag">مسیر گام‌به‌گام یادگیری</span>
+                    <h2 class="section__title">سرفصل‌های دوره انسان هوشران</h2>
+                    <p class="section__desc">
+                        در هر بخش: آشنایی با مفهوم، نمایش زنده، تمرین هدایت‌شده، حل مسئله واقعی و ارزیابی خروجی.
+                    </p>
+                </div>
+
+                <div class="syllabus__accordion" data-aos="fade-up">
+                    <!-- سرفصل ۱ -->
+                    <div class="accordion-item is-active">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۱</span>
+                                <span>مفهوم انسان هوشران و سواد کار با هوش مصنوعی</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> ساخت مدل ذهنی درست از توانمندی‌ها و نقش انسان در همکاری با هوش مصنوعی.</p>
+                                <p>آشنایی با چیستی هوش مصنوعی، خانواده‌های اصلی مدل‌ها، توانمندی‌ها و محدودیت‌های بنیادین مدل‌های زبانی.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> یک فعالیت کاری واقعی را به بخش‌های قابل واگذاری به هوش مصنوعی و بخش‌های نیازمند قضاوت انسانی تفکیک کنید. (خروجی: نقشه کار همکاری)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۲ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۲</span>
+                                <span>مبانی پرامپت و مهندسی زمینه</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> تبدیل درخواست مبهم به دستور دقیق و شفاف کاری.</p>
+                                <p>پرامپت چیست و چه چیزی نیست؟ تفاوت سؤال با دستور ساختاریافته، تعیین دقیق مخاطب، نقش و هدف.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> یک پرامپت ضعیف کاری را بازنویسی و نسخه حرفه‌ای آن را اجرا و با هم مقایسه کنید. (خروجی: شیوه‌نامه پرامپت دقیق)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۳ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۳</span>
+                                <span>طراحی پرامپت، کنترل لحن و کیفیت خروجی</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> کنترل کیفیت، جزئیات، لحن و قالب ساختاریافته خروجی.</p>
+                                <p>تعیین معیارهای موفقیت خروجی، تعریف محدودیت‌ها و استفاده از هوش مصنوعی برای تحلیل، تصمیم‌گیری و تولید محتوا.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> یک نیاز واقعی کاری را به خروجی استاندارد و فرمت‌بندی‌شده تبدیل کنید.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۴ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۴</span>
+                                <span>تفکر ساختاریافته و حل مسئله مرحله‌به‌مرحله</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> هدایت رفتار مدل در شکستن مسائل پیچیده کاری به گام‌های اجرایی.</p>
+                                <p>انتخاب، ساختاردهی و اولویت‌بندی اطلاعات؛ نحوه همراه کردن مدل در فرایندهای چندمرحله‌ای تحلیلی.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> یک چالش پیچیده سازمانی را به چند گام منطقی تفکیک و نتایج را گام‌به‌گام استخراج کنید.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۵ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۵</span>
+                                <span>مقابله با خطا، توهم و ارزیابی شواهد</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> استفاده مبتنی بر شواهد و راستی‌آزمایی به جای اعتماد کورکورانه.</p>
+                                <p>شناسایی سوگیری‌ها، خطاهای مدل، توهم زبانی (Hallucination) و روش‌های ارزیابی متناسب با ریسک کاری.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> ارزیابی پاسخ‌های تولیدشده با شواهد مرجع و سنجش اعتبار داده‌ها.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۶ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۶</span>
+                                <span>تحلیل متن، داده‌ها و استخراج بینش اجرایی</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> تبدیل اسناد و اطلاعات حجیم به خروجی‌های تحلیلی و تصمیم‌ساز.</p>
+                                <p>جستجوی هدفمند، استخراج ساختاریافته داده‌ها، مقایسه متون، خلاصه‌سازی و تبدیل گزارش به اقدام عملی.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> یک سند کاری واقعی را به داده‌های قابل اقدام و جدول مقایسه‌ای تبدیل کنید.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۷ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۷</span>
+                                <span>ساخت دستیار هوشمند شخصی با رفتار پایدار</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> ساخت Custom GPT یا دستیار اختصاصی پایدار برای وظایف شغلی.</p>
+                                <p>تنظیم پرامپت سیستمی، استانداردسازی ورودی/خروجی، تزریق منابع دانش سازمانی و اتصال ابزارها.</p>
+                                <div class="accordion-exercise">
+                                    <strong>تمرین عملی:</strong> ساخت یک دستیار شخصی متناسب با نقش کاری خودتان با رفتار تکرارپذیر.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- سرفصل ۸ -->
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <div class="accordion-header__meta">
+                                <span class="accordion-num">۸</span>
+                                <span>پروژه نهایی و استفاده مسئولانه از هوش مصنوعی</span>
+                            </div>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p class="accordion-goal"><strong>هدف:</strong> تجمیع تمامی مهارت‌ها در یک پروژه کامل و واقعی سازمانی.</p>
+                                <p>حل یک چالش سازمانی از ابتدا تا انتها با رعایت اصول امنیت داده‌ها، حریم خصوصی و استفاده مسئولانه.</p>
+                                <div class="accordion-exercise">
+                                    <strong>خروجی نهایی:</strong> پیاده‌سازی یک گردش‌کار هوشمند برای یکی از فرایندهای واقعی تیم کاری شما.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== بنر ویژه ارزیابی سازمانی ===================== -->
+        <section class="assessment-band" id="assessment">
+            <div class="container">
+                <div class="assessment-band__grid">
+                    <div class="assessment-band__content" data-aos="fade-up">
+                        <span class="assessment-band__tag">از کجا شروع کنیم؟ با شناخت وضعیت امروز</span>
+                        <h2 class="assessment-band__title">ارزیابی آمادگی هوش مصنوعی سازمانی</h2>
+                        <p class="assessment-band__desc">
+                            ارزیابی هوشران کمک می‌کند تصویری شفاف از وضعیت فعلی سازمان و فاصله آن با بهره‌گیری مؤثر از هوش مصنوعی به دست آورید؛ شناسایی گلوگاه‌های کلیدی و ارائه راهکار گام‌به‌گام.
+                        </p>
+
+                        <div class="assessment-features">
+                            <div class="assessment-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>سنجش بیش از ۵۰ مؤلفه رفتاری در ۷ بُعد کلیدی سازمان</span>
+                            </div>
+                            <div class="assessment-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>بررسی وضعیت فعلی و تعیین سطح هدف مهارتی و زیرساختی</span>
+                            </div>
+                            <div class="assessment-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>شناخت نقاط قوت و اولویت‌بندی شکاف‌های تیم‌ها</span>
+                            </div>
+                            <div class="assessment-feature">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>ارائه گزارش تحلیلی و نقشه راه پیشنهادی ۹۰روزه برای رهبران</span>
+                            </div>
+                        </div>
+
+                        <a href="assessment.html" class="btn btn--accent">
+                            ورود به سامانه خودارزیابی سازمانی
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        </a>
+                    </div>
+
+                    <div class="assessment-band__visual" data-aos="fade-up" data-aos-delay="150">
+                        <div class="assessment-card">
+                            <div class="assessment-card__score">۷ / ۷</div>
+                            <div class="assessment-card__label">ابعاد جامع ارزیابی</div>
+                            <div class="assessment-card__sub">استراتژی، فرهنگ، مهارت، فرایند، داده، ابزار و حاکمیت</div>
+                            <p style="font-size: 0.92rem; color: #E2E8F0; line-height: 1.8;">
+                                «نتیجه بر پایه پاسخ‌های سازمان شما و نقطه شروعی برای تدوین استراتژی اثربخش هوش مصنوعی است.»
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== تماس با ما و مشاوره ===================== -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="section__head" data-aos="fade-up">
+                    <span class="section__tag">ارتباط مستقیم</span>
+                    <h2 class="section__title">سوالی دارید؟ در تماس باشید</h2>
+                    <p class="section__desc">برای مشاوره، هماهنگی دوره‌های سازمانی یا ارزیابی تیم خود، فرم زیر را تکمیل کنید.</p>
+                </div>
+
+                <div class="contact-wrapper" data-aos="fade-up">
+                    <form id="contact-form" novalidate>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="c-name">نام و نام خانوادگی <span class="req-star">*</span></label>
+                                <input class="form-control" type="text" id="c-name" placeholder="مثال: علی احمدی" required autocomplete="name">
+                                <div class="field-error-msg" id="c-name-err"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="c-phone">شماره همراه <span class="req-star">*</span></label>
+                                <input class="form-control" type="tel" id="c-phone" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required autocomplete="tel" dir="ltr" style="text-align: right;">
+                                <div class="field-error-msg" id="c-phone-err"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="c-email">آدرس ایمیل کاری / معتبر <span class="req-star">*</span></label>
+                                <input class="form-control" type="email" id="c-email" placeholder="name@company.com" required autocomplete="email" dir="ltr" style="text-align: right;">
+                                <div class="field-error-msg" id="c-email-err"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="c-org">نام سازمان یا کسب‌وکار <span class="req-star">*</span></label>
+                                <input class="form-control" type="text" id="c-org" placeholder="نام مجموعه، شرکت یا برند شما" required>
+                                <div class="field-error-msg" id="c-org-err"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="c-message">توضیحات یا نیازهای مورد نظر <span style="font-weight: normal; font-size: 0.82rem; color: #71717A;">(اختیاری)</span></label>
+                            <textarea class="form-control" id="c-message" placeholder="در صورت تمایل، درباره نیاز آموزشی، مشاوره هوش مصنوعی یا جزئیات درخواست خود بنویسید..." rows="4"></textarea>
+                            <div class="field-error-msg" id="c-message-err"></div>
+                        </div>
+
+                        <div class="telegram-dispatch-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.63 3.72-.53.36-1.02.54-1.45.53-.48-.01-1.41-.27-2.1-.5-.85-.27-1.53-.42-1.47-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.4-3.61 4-.1.67 1.33.6 1.48z"/></svg>
+                            <span>ارسال مستقیم پیام به پشتیبانی تلگرام هوشران: <strong>@houshraan_Sup</strong></span>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary" id="c-submit-btn" style="width: 100%; margin-top: 14px;" disabled title="لطفاً ۴ فیلد ستاره‌دار الزامی را تکمیل فرمایید تا دکمه فعال شود">
+                            ارسال درخواست به تلگرام هوشران
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+
+                        <div id="form-feedback" class="form-feedback"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== فوتر ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <img src="assets/images/logo.png" alt="هوشران" class="footer__logo">
+                    <p class="footer__about">
+                        هوشران؛ همراهی مطمئن برای سازمان‌ها و افراد در مسیر استفاده آگاهانه، عملی و تکرارپذیر از هوش مصنوعی در کار واقعی.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer__col-title">دسترسی سریع</h4>
+                    <div class="footer__links">
+                        <a href="#hero" class="footer__link">صفحه اصلی</a>
+                        <a href="#about" class="footer__link">رویکرد هوشران</a>
+                        <a href="#programs" class="footer__link">دوره‌ها و خدمات</a>
+                        <a href="#syllabus" class="footer__link">سرفصل‌های آموزشی</a>
+                        <a href="assessment.html" class="footer__link">ارزیابی سازمانی</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer__col-title">دوره‌ها</h4>
+                    <div class="footer__links">
+                        <a href="#programs" class="footer__link">انسان هوشران</a>
+                        <a href="#programs" class="footer__link">فروش با هوش مصنوعی</a>
+                        <a href="#programs" class="footer__link">بازطراحی فرایندهای کاری</a>
+                        <a href="assessment.html" class="footer__link">سنجش آمادگی سازمانی</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer__col-title">ارتباط با ما</h4>
+                    <div class="footer__links">
+                        <a href="mailto:info@houshraan.ir" class="footer__link">info@houshraan.ir</a>
+                        <a href="https://t.me/houshraan_Sup" target="_blank" rel="noopener noreferrer" class="footer__link footer__link--telegram">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.63 3.72-.53.36-1.02.54-1.45.53-.48-.01-1.41-.27-2.1-.5-.85-.27-1.53-.42-1.47-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.4-3.61 4-.1.67 1.33.6 1.48z"/></svg>
+                            <span>تلگرام: <span dir="ltr">@houshraan_Sup</span></span>
+                        </a>
+                        <a href="https://www.houshraan.ir" class="footer__link">www.houshraan.ir</a>
+                        <a href="#contact" class="footer__link">درخواست مشاوره</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>© تمام حقوق برای وب‌سایت هوشران (Houshraan) محفوظ است.</p>
+                <div class="footer__socials">
+                    <a href="https://t.me/houshraan_Sup" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="تلگرام پشتیبانی">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.63 3.72-.53.36-1.02.54-1.45.53-.48-.01-1.41-.27-2.1-.5-.85-.27-1.53-.42-1.47-.89.03-.25.38-.51 1.07-.78 4.2-1.82 7-3.03 8.4-3.61 4-.1.67 1.33.6 1.48z"/></svg>
+                    </a>
+                    <a href="mailto:info@houshraan.ir" class="footer__social-link" aria-label="ایمیل">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="لینکدین">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- اسکریپت‌ها -->
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
 </html>

@@ -1,0 +1,2745 @@
+/* =========================================================
+   فونت Vazirmatn — فونت محلی فارسی
+   ========================================================= */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../fonts/Vazirmatn-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../fonts/Vazirmatn-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../fonts/Vazirmatn-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* =========================================================
+   متغیرهای طراحی (Design Tokens) هوشران — تم شیک زرد و مشکی مدرن
+   ========================================================= */
+:root {
+    /* رنگ پایه سازمانی (مشکی و خاکستری عمیق برای لوکس بودن و کنتراست بالا) */
+    --color-primary: #18181B;           /* زینک عمیق */
+    --color-primary-light: #27272A;
+    --color-primary-dark: #09090B;
+    
+    /* طیف رنگی زرد / طلایی (Yellow & Amber Spectrum) */
+    --color-accent: #EAB308;             /* زرد پرانرژی و جذاب */
+    --color-accent-hover: #D97706;       /* هاور زرد-کهربایی */
+    --color-accent-dark: #A16207;
+    --color-accent-soft: #FEF9C3;        /* پس‌زمینه زرد لایت */
+    --color-accent-subtle: #FFFBEB;      /* زرد بسیار ملایم */
+    --color-accent-text: #854D0E;        /* متن تیره خوانا روی زرد لایت */
+    
+    --color-secondary: #52525B;
+    --color-secondary-light: #71717A;
+    --color-success: #10B981;
+    --color-text: #18181B;
+    --color-text-muted: #71717A;
+    --color-border: #E4E4E7;
+    --color-border-light: #F4F4F5;
+    --color-bg: #FFFFFF;
+    --color-bg-soft: #FAFAFA;
+    --color-bg-card: #FFFFFF;
+    
+    --font-main: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    --radius-sm: 8px;
+    --radius: 16px;
+    --radius-lg: 24px;
+    
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 25px -5px rgba(234, 179, 8, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 12px 16px -6px rgba(234, 179, 8, 0.08);
+    --shadow-glow: 0 0 25px rgba(234, 179, 8, 0.25);
+
+    --container-width: 1200px;
+    --navbar-height: 96px;
+    --navbar-height-scrolled: 76px;
+}
+
+/* =========================================================
+   ریست پایه و ساختار صفحه
+   ========================================================= */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.8;
+    direction: rtl;
+    text-align: right;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* بافت گرین ملایم */
+body::after {
+    content: '';
+    position: fixed;
+    inset: -10%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    mix-blend-mode: overlay;
+    background-image: radial-gradient(#18181B 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-primary);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.section--soft {
+    background: var(--color-bg-soft);
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+    width: 80%;
+    margin: 0 auto;
+}
+
+.section__head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 56px;
+}
+
+.section__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    padding: 6px 18px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.section__title {
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+    margin-bottom: 16px;
+    color: var(--color-primary);
+}
+
+.section__desc {
+    color: var(--color-text-muted);
+    font-size: 1.08rem;
+    line-height: 1.9;
+}
+
+/* =========================================================
+   دکمه‌ها (Buttons) — زرد با متن تیره با کنتراست عالی
+   ========================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 50px;
+    padding: 0 28px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, #F59E0B 0%, #EAB308 100%);
+    color: #18181B;
+    box-shadow: 0 4px 15px rgba(234, 179, 8, 0.35);
+    font-weight: 800;
+}
+
+.btn--primary:hover {
+    background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+    box-shadow: 0 8px 25px rgba(234, 179, 8, 0.45);
+    transform: translateY(-2px);
+    color: #18181B;
+}
+
+.btn--outline {
+    background: #FFFFFF;
+    border-color: var(--color-border);
+    color: var(--color-primary);
+}
+
+.btn--outline:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-text);
+    background: var(--color-accent-subtle);
+    transform: translateY(-2px);
+}
+
+.btn--accent {
+    background: #FACC15;
+    color: #18181B;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(250, 204, 21, 0.35);
+}
+
+.btn--accent:hover {
+    background: #EAB308;
+    box-shadow: 0 8px 25px rgba(234, 179, 8, 0.45);
+    transform: translateY(-2px);
+}
+
+.btn--sm {
+    min-height: 40px;
+    padding: 0 18px;
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   ناوبار چسبان شیشه‌ای (Glassmorphic Navbar)
+   ========================================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(228, 228, 231, 0.7);
+    transition: all 0.3s ease;
+}
+
+.navbar.is-scrolled {
+    height: var(--navbar-height-scrolled);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow-sm);
+    border-bottom-color: var(--color-border);
+}
+
+.navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar__logo {
+    height: 52px;
+    max-width: 170px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.navbar.is-scrolled .navbar__logo {
+    height: 42px;
+}
+
+.navbar__brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar__title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+.navbar__subtitle {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-secondary-light);
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar__link {
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--color-text);
+    padding: 6px 2px;
+    position: relative;
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    left: 0;
+    height: 2.5px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+}
+
+.navbar__link:hover {
+    color: var(--color-accent-text);
+}
+
+.navbar__link:hover::after {
+    transform: scaleX(1);
+}
+
+.navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--color-primary);
+}
+
+/* =========================================================
+   بخش قهرمان (Hero Section)
+   ========================================================= */
+.hero {
+    padding-top: calc(var(--navbar-height) + 50px);
+    padding-bottom: 90px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 12% 25%, rgba(254, 240, 138, 0.4) 0%, rgba(255, 255, 255, 1) 65%);
+}
+
+.hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero__title {
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    line-height: 1.35;
+    margin-bottom: 22px;
+    font-weight: 800;
+}
+
+.hero__title span {
+    background: linear-gradient(135deg, #18181B 0%, #D97706 70%, #EAB308 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero__desc {
+    font-size: 1.15rem;
+    color: var(--color-secondary);
+    line-height: 1.95;
+    margin-bottom: 34px;
+    max-width: 620px;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.hero__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+}
+
+.hero__feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+.hero__feature-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-accent-text);
+}
+
+/* کارت تعاملی سمت چپ هیرو */
+.hero__card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #F59E0B, #FACC15);
+}
+
+.hero__card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.hero__card-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius);
+    background: var(--color-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.hero__card-avatar img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.hero__card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.hero__card-subtitle {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.hero__quote-box {
+    background: var(--color-accent-subtle);
+    border-radius: var(--radius);
+    padding: 20px;
+    border-right: 4px solid var(--color-accent);
+    margin-bottom: 24px;
+}
+
+.hero__quote-text {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    line-height: 1.8;
+}
+
+.hero__stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.hero__stat-mini {
+    background: var(--color-bg-soft);
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    border: 1px solid var(--color-border-light);
+}
+
+.hero__stat-num {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #D97706;
+    line-height: 1.2;
+}
+
+.hero__stat-label {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+/* =========================================================
+   نوار آمار و شواهد (Insights Bar) — زمینه تیره با اعداد زرد درخشان
+   ========================================================= */
+.stats-band {
+    background: #18181B;
+    color: #FFFFFF;
+    padding: 65px 0;
+    position: relative;
+    border-top: 1px solid #27272A;
+    border-bottom: 1px solid #27272A;
+}
+
+.stats-band__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stats-band__item {
+    position: relative;
+}
+
+.stats-band__item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.stats-band__number {
+    font-size: clamp(2.1rem, 3.6vw, 3rem);
+    font-weight: 800;
+    color: #FACC15;
+    margin-bottom: 6px;
+    text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+}
+
+.stats-band__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.stats-band__caption {
+    font-size: 0.84rem;
+    color: #A1A1AA;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   بخش فلسفه و ارزش (Philosophy / Quote)
+   ========================================================= */
+.philosophy {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--color-bg-soft) 100%);
+    text-align: center;
+}
+
+.philosophy__box {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 44px 36px;
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.philosophy__quote {
+    font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.philosophy__quote span {
+    color: #D97706;
+}
+
+.philosophy__desc {
+    color: var(--color-secondary);
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+/* =========================================================
+   کارت‌های دوره‌ها و خدمات تخصصی (Programs & Services)
+   ========================================================= */
+.programs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.program-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(234, 179, 8, 0.15), 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-color: var(--color-accent);
+}
+
+.program-card__badge {
+    align-self: flex-start;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.program-card__badge--blue {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+}
+
+.program-card__badge--teal {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.program-card__badge--purple {
+    background: #FFFBEB;
+    color: #B45309;
+}
+
+.program-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #B45309;
+}
+
+.program-card__title {
+    font-size: 1.35rem;
+    margin-bottom: 14px;
+}
+
+.program-card__desc {
+    color: var(--color-secondary);
+    font-size: 0.98rem;
+    line-height: 1.85;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+.program-card__list {
+    margin-bottom: 28px;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 18px;
+}
+
+.program-card__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.program-card__item svg {
+    width: 18px;
+    height: 18px;
+    color: #D97706;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+/* =========================================================
+   آکاردئون سرفصل‌های دوره (Syllabus Accordion)
+   ========================================================= */
+.syllabus {
+    background: var(--color-bg-soft);
+}
+
+.syllabus__accordion {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.accordion-item {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.accordion-item.is-active {
+    border-color: var(--color-accent);
+    box-shadow: 0 6px 20px rgba(234, 179, 8, 0.12);
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 22px 26px;
+    background: none;
+    border: none;
+    text-align: right;
+    font-family: var(--font-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.accordion-header__meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.accordion-num {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.92rem;
+    font-weight: 800;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.accordion-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    color: var(--color-secondary-light);
+}
+
+.accordion-item.is-active .accordion-icon {
+    transform: rotate(180deg);
+    color: #D97706;
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+    background: #FFFFFF;
+}
+
+.accordion-item.is-active .accordion-body {
+    max-height: 600px;
+    transition: max-height 0.4s ease-in-out;
+}
+
+.accordion-content {
+    padding: 0 26px 24px;
+    border-top: 1px dashed var(--color-border);
+    padding-top: 18px;
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+    line-height: 1.9;
+}
+
+.accordion-goal {
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.accordion-exercise {
+    background: var(--color-accent-subtle);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    margin-top: 12px;
+    border-right: 3px solid var(--color-accent);
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   بنر ویژه ارزیابی سازمانی (Assessment Banner) — مشکی زغالی با تلالو طلایی
+   ========================================================= */
+.assessment-band {
+    padding: 90px 0;
+    background: radial-gradient(circle at center, #1C1917 0%, #09090B 100%);
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #27272A;
+}
+
+.assessment-band::before {
+    content: '';
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.12) 0%, transparent 70%);
+    top: -150px;
+    left: -150px;
+    pointer-events: none;
+}
+
+.assessment-band__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.assessment-band__tag {
+    color: #FACC15;
+    font-weight: 700;
+    font-size: 0.92rem;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.assessment-band__title {
+    color: #FFFFFF;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom: 18px;
+    font-weight: 800;
+}
+
+.assessment-band__desc {
+    color: #D4D4D8;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+.assessment-features {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 34px;
+}
+
+.assessment-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.98rem;
+    color: #E4E4E7;
+}
+
+.assessment-feature svg {
+    width: 20px;
+    height: 20px;
+    color: #FACC15;
+}
+
+.assessment-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.1);
+}
+
+.assessment-card__score {
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: #FACC15;
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+}
+
+.assessment-card__label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+
+.assessment-card__sub {
+    font-size: 0.88rem;
+    color: #A1A1AA;
+    margin-bottom: 24px;
+}
+
+/* =========================================================
+   فرم تماس و مشاوره (Contact Section)
+   ========================================================= */
+.contact-section {
+    background: var(--color-bg);
+}
+
+.contact-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 44px 40px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.form-control {
+    font-family: var(--font-main);
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-border);
+    font-size: 0.96rem;
+    color: var(--color-text);
+    background: var(--color-bg-soft);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: var(--color-accent);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-feedback {
+    display: none;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.form-feedback--success {
+    background: #FEFCE8;
+    color: #854D0E;
+    border: 1px solid #FEF08A;
+}
+
+/* =========================================================
+   فوتر (Footer) — اصلاح دقیق عدم کشیدگی لوگو
+   ========================================================= */
+.footer {
+    background: #09090B;
+    color: #A1A1AA;
+    padding: 70px 0 30px;
+    font-size: 0.94rem;
+    border-top: 1px solid #27272A;
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* حل کامل مشکل کشیدگی لوگو: عدم کشیدگی در فلکس و حفظ نسبت ابعاد */
+.footer__logo {
+    display: block;
+    align-self: flex-start;
+    width: auto;
+    max-width: 150px;
+    height: auto;
+    max-height: 52px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.footer__about {
+    line-height: 1.8;
+    color: #A1A1AA;
+    font-size: 0.92rem;
+}
+
+.footer__col-title {
+    color: #FFFFFF;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__link {
+    color: #A1A1AA;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+}
+
+.footer__link--telegram svg {
+    color: #22C55E;
+    flex-shrink: 0;
+}
+
+.footer__link:hover {
+    color: #FACC15;
+    padding-right: 4px;
+}
+
+.footer__bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.86rem;
+}
+
+.footer__socials {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer__social-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    transition: all 0.2s ease;
+}
+
+.footer__social-link:hover {
+    background: var(--color-accent);
+    color: #18181B;
+    transform: translateY(-2px);
+}
+
+.footer__social-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* =========================================================
+   ریسپانسیو (Responsive Media Queries)
+   ========================================================= */
+@media (max-width: 1024px) {
+    .hero__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .programs__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .assessment-band__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 820px) {
+    .navbar__menu {
+        position: fixed;
+        top: var(--navbar-height);
+        right: 0;
+        left: 0;
+        background: #FFFFFF;
+        flex-direction: column;
+        padding: 24px;
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .navbar__menu.is-open {
+        transform: translateY(0);
+    }
+
+    .navbar__toggle {
+        display: block;
+    }
+
+    .stats-band__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .stats-band__item:nth-child(2)::after {
+        display: none;
+    }
+
+    .programs__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 580px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    section {
+        padding: 70px 0;
+    }
+
+    .hero__actions {
+        flex-direction: column;
+    }
+
+    .hero__actions .btn {
+        width: 100%;
+    }
+
+    .stats-band__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-band__item::after {
+        display: none !important;
+    }
+
+    .footer__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   کانتینر گرافیکی و انیمیشن متحرک بخش هیرو (Hero Visual)
+   ========================================================= */
+.hero__visual-container {
+    position: relative;
+    width: 100%;
+    max-width: 530px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.hero__visual-art {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(145deg, #FFFFFF 0%, #FFFDF5 60%, #FEF9C3 100%);
+    border: 1.5px solid rgba(234, 179, 8, 0.35);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 45px -10px rgba(234, 179, 8, 0.22), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+    padding: 30px 20px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* هاله درخشان زرد پشت تصویر */
+.hero__glow-sphere {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.3) 0%, rgba(234, 179, 8, 0.08) 50%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+    100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.95; }
+}
+
+/* انیمیشن وکتوری SVG */
+.hero__neural-art {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* انیمیشن رینگ ضربان‌دار مرکزی */
+.pulse-ring {
+    animation: ringExpand 2.5s infinite ease-out;
+    transform-origin: 250px 190px;
+}
+
+@keyframes ringExpand {
+    0% { r: 44px; opacity: 0.9; }
+    50% { opacity: 0.5; }
+    100% { r: 66px; opacity: 0; }
+}
+
+/* انیمیشن خطوط انتقال داده */
+.neural-line {
+    stroke-dasharray: 6 6;
+    animation: dashStream 3s linear infinite;
+}
+
+@keyframes dashStream {
+    to { stroke-dashoffset: -24; }
+}
+
+/* انیمیشن شناور بودن نودهای اطراف */
+.float-node {
+    animation: nodeBobbing 4s ease-in-out infinite alternate;
+}
+
+.node-a { animation-delay: 0s; }
+.node-b { animation-delay: 0.7s; }
+.node-c { animation-delay: 1.4s; }
+.node-d { animation-delay: 2.1s; }
+.node-e { animation-delay: 0.9s; }
+.node-f { animation-delay: 1.6s; }
+
+@keyframes nodeBobbing {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-7px); }
+}
+
+/* بج‌های چیپ گوشه‌ها */
+.hero__chip {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 9999px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    z-index: 2;
+}
+
+.hero__chip--top {
+    top: 16px;
+    right: 16px;
+}
+
+.hero__chip--bottom {
+    top: 16px;
+    left: 16px;
+}
+
+.hero__chip-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #EAB308;
+    box-shadow: 0 0 8px #FACC15;
+    animation: dotBlink 1.5s infinite;
+}
+
+@keyframes dotBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+/* کارت شناور شیشه‌ای حامل جمله استراتژیک هوشران */
+.hero__floating-quote {
+    position: absolute;
+    bottom: 0;
+    right: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    border: 1.5px solid #FDE047;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    box-shadow: 0 16px 35px -8px rgba(234, 179, 8, 0.25), 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 10;
+    animation: quoteFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes quoteFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
+}
+
+.hero__floating-quote-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.hero__floating-quote-text {
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: var(--color-primary);
+}
+
+.hero__floating-quote-text strong {
+    color: #D97706;
+}
+
+
+/* =========================================================
+   استایل‌های سامانه ارزیابی سازمانی هوشران (Assessment UI)
+   ========================================================= */
+.assessment-page {
+    background-color: #FAFAFA;
+}
+
+.assessment-main {
+    padding-top: calc(var(--navbar-height) + 40px);
+    padding-bottom: 100px;
+    min-height: 85vh;
+}
+
+/* کارت مقدمه (Intro Card) */
+.diag-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 50px 45px;
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.diag-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #F59E0B, #FACC15);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.diag-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.diag-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #EAB308;
+    box-shadow: 0 0 8px #FACC15;
+}
+
+.diag-title {
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
+    margin-bottom: 16px;
+    color: var(--color-primary);
+}
+
+.diag-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    line-height: 1.95;
+    margin-bottom: 30px;
+}
+
+.dim-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 36px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.dim-mini-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.dim-mini-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.intro-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+/* هدر و نوار پیشرفت ویزارد */
+.wizard-nav-wrap {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 32px;
+}
+
+.wizard-nav-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.wizard-step-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #D97706;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.wizard-dim-title {
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    margin-bottom: 6px;
+}
+
+.wizard-dim-desc {
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+}
+
+.wizard-stats-pill {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.wizard-stats-percent {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #D97706;
+    line-height: 1.1;
+}
+
+.wizard-stats-label {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+}
+
+.wizard-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #F4F4F5;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.wizard-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F59E0B, #FACC15);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+}
+
+.wizard-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.wizard-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.wizard-tab:hover {
+    border-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+.wizard-tab.is-active {
+    background: #18181B;
+    border-color: #18181B;
+    color: #FFFFFF;
+}
+
+.wizard-tab.is-active .wizard-tab-num {
+    background: #EAB308;
+    color: #18181B;
+}
+
+.wizard-tab.is-done {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: #ECFDF5;
+    color: #065F46;
+}
+
+.wizard-tab.is-done .wizard-tab-num {
+    background: #10B981;
+    color: #FFFFFF;
+}
+
+.wizard-tab-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #E4E4E7;
+    color: var(--color-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* سوالات */
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.question-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+}
+
+.question-header {
+    margin-bottom: 22px;
+}
+
+.question-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.question-code {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.question-weight {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+}
+
+.question-text {
+    font-size: 1.18rem;
+    color: var(--color-primary);
+    line-height: 1.7;
+}
+
+/* رادیو کارت‌های سطوح بلوغ ۱ تا ۵ */
+.rubric-options {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.rubric-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rubric-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.rubric-card:hover {
+    border-color: var(--color-accent);
+    background: #FFFDF5;
+    transform: translateY(-2px);
+}
+
+.rubric-card.is-selected {
+    background: #FFFDF5;
+    border-color: #EAB308;
+    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2), 0 8px 16px -4px rgba(234, 179, 8, 0.15);
+}
+
+.rubric-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.rubric-level-num {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #D97706;
+}
+
+.rubric-level-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.35;
+}
+
+.rubric-card-desc {
+    font-size: 0.78rem;
+    color: var(--color-secondary);
+    line-height: 1.6;
+}
+
+/* فوتر ناوبری ویزارد */
+.wizard-footer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 20px 30px;
+}
+
+/* =========================================================
+   صفحه گزارش تحلیلی (Report Dashboard)
+   ========================================================= */
+.report-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.report-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.report-tag {
+    display: inline-block;
+    color: #D97706;
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+}
+
+.report-title {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.report-meta {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+}
+
+.report-header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* کارت شاخص و نمره کل */
+.report-hero-card {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 24px;
+    background: #18181B;
+    color: #FFFFFF;
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid #27272A;
+}
+
+.report-score-box {
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.report-score-num {
+    font-size: 3.6rem;
+    font-weight: 800;
+    color: #FACC15;
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 25px rgba(250, 204, 21, 0.35);
+}
+
+.report-score-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.report-score-percent {
+    font-size: 0.9rem;
+    color: #A1A1AA;
+}
+
+.report-stage-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.report-stage-badge {
+    align-self: flex-start;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.report-stage-title {
+    font-size: 1.6rem;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.report-stage-desc {
+    font-size: 0.96rem;
+    color: #D4D4D8;
+    line-height: 1.8;
+}
+
+/* ابعاد ۷‌گانه در گزارش */
+.report-dims-section {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    margin-bottom: 36px;
+}
+
+.report-section-title {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    margin-bottom: 24px;
+}
+
+.report-dims-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.dim-result-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+}
+
+.dim-result-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.dim-result-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-primary);
+}
+
+.dim-result-score {
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: #D97706;
+}
+
+.dim-progress-track {
+    width: 100%;
+    height: 8px;
+    background: #E4E4E7;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.dim-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #F59E0B, #EAB308);
+    border-radius: 9999px;
+}
+
+.dim-result-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* تحلیل قوت‌ها و شکاف‌ها */
+.report-analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+}
+
+.analysis-box {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 30px;
+}
+
+.analysis-box--strengths {
+    border-top: 4px solid #10B981;
+}
+
+.analysis-box--gaps {
+    border-top: 4px solid #F59E0B;
+}
+
+.analysis-box-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #065F46;
+}
+
+.analysis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 0.94rem;
+    color: var(--color-secondary);
+    line-height: 1.8;
+}
+
+.analysis-list li {
+    position: relative;
+    padding-right: 14px;
+}
+
+.analysis-list li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #D97706;
+    font-weight: bold;
+}
+
+/* نقشه راه ۹۰ روزه */
+.roadmap-section {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    margin-bottom: 36px;
+}
+
+.roadmap-subtitle {
+    font-size: 0.98rem;
+    color: var(--color-secondary);
+    margin-bottom: 24px;
+}
+
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.roadmap-card {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.roadmap-card-phase {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    font-weight: 800;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.roadmap-card-title {
+    font-size: 1.05rem;
+    color: var(--color-primary);
+    margin-bottom: 14px;
+}
+
+.roadmap-card-list {
+    font-size: 0.88rem;
+    color: var(--color-secondary);
+    line-height: 1.75;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.roadmap-card-list li {
+    position: relative;
+    padding-right: 12px;
+}
+
+.roadmap-card-list li::before {
+    content: '—';
+    position: absolute;
+    right: 0;
+    color: #D97706;
+}
+
+/* بنر مشاوره پایانی */
+.consultation-banner {
+    background: linear-gradient(135deg, #18181B 0%, #27272A 100%);
+    color: #FFFFFF;
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border: 1px solid #3F3F46;
+}
+
+.consultation-content h3 {
+    color: #FFFFFF;
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+}
+
+.consultation-content p {
+    color: #D4D4D8;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* استایل‌های پرینت (Print Optimization) */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+    }
+
+    .assessment-main {
+        padding: 0 !important;
+    }
+
+    .report-hero-card {
+        background: #F4F4F5 !important;
+        color: #000000 !important;
+        border: 1px solid #D4D4D8 !important;
+    }
+
+    .report-score-num {
+        color: #B45309 !important;
+        text-shadow: none !important;
+    }
+
+    .report-stage-title {
+        color: #000000 !important;
+    }
+
+    .report-stage-desc {
+        color: #4B5563 !important;
+    }
+}
+
+/* مدیا کوئری‌های ریسپانسیو ارزیابی */
+@media (max-width: 900px) {
+    .rubric-options {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .report-hero-card {
+        grid-template-columns: 1fr;
+        padding: 26px;
+    }
+
+    .report-score-box {
+        border-left: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-left: 0;
+        padding-bottom: 20px;
+    }
+
+    .report-dims-grid, .report-analysis-grid, .roadmap-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .consultation-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px;
+    }
+}
+
+
+/* =========================================================
+   استایل‌های نمایش تک‌سوالی سامانه ارزیابی (Single-Question Focus UI)
+   ========================================================= */
+.single-q-wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+/* نوار بالا و نشانگر پیشرفت */
+.single-q-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.single-q-dim-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.single-q-dim-badge {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-text);
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.single-q-counter {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.single-q-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 220px;
+}
+
+.single-q-percent {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #D97706;
+}
+
+.single-q-bar-track {
+    flex-grow: 1;
+    height: 8px;
+    background: #F4F4F5;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.single-q-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F59E0B, #FACC15);
+    border-radius: 9999px;
+    transition: width 0.35s ease;
+}
+
+/* کارت اصلی سوال */
+.single-q-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 40px;
+    position: relative;
+}
+
+.single-q-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #F59E0B, #FACC15);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.single-q-head {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.single-q-code {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.single-q-title {
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    color: var(--color-primary);
+    line-height: 1.75;
+    font-weight: 700;
+}
+
+/* گزینه‌های پاسخ */
+.single-q-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.q-option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    user-select: none;
+}
+
+.q-option-item:hover {
+    border-color: var(--color-accent);
+    background: #FFFDF5;
+    transform: translateX(-3px);
+}
+
+.q-option-item.is-selected {
+    background: #FFFDF5;
+    border-color: #EAB308;
+    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.25), 0 4px 12px rgba(234, 179, 8, 0.1);
+}
+
+/* آیکون دایره رادیو */
+.q-radio-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #D4D4D8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.q-option-item.is-selected .q-radio-indicator {
+    border-color: #EAB308;
+    background: #EAB308;
+}
+
+.q-radio-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.q-option-item.is-selected .q-radio-circle {
+    opacity: 1;
+}
+
+.q-option-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+}
+
+.q-option-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.q-level-tag {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #D97706;
+    background: var(--color-accent-soft);
+    padding: 1px 8px;
+    border-radius: 4px;
+}
+
+.q-level-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.q-level-desc {
+    font-size: 0.88rem;
+    color: var(--color-secondary);
+    line-height: 1.7;
+}
+
+/* کانتینر گزینه N/A */
+.q-na-container {
+    margin-top: 8px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.q-option-item--na {
+    background: #FFFBEB;
+    border-color: #FDE68A;
+}
+
+.q-option-item--na:hover {
+    border-color: #F59E0B;
+}
+
+.na-reason-input-wrap {
+    background: #FEF3C7;
+    border: 1.5px solid #F59E0B;
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-top: 10px;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* هشدار عدم پاسخ */
+.q-validation-alert {
+    background: #FEF2F2;
+    color: #991B1B;
+    border: 1px solid #FECACA;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    animation: fadeIn 0.2s ease;
+}
+
+/* دکمه‌های ناوبری انتهای سوال */
+.single-q-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border-light);
+}
+
+.btn--next-step[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+@media (max-width: 680px) {
+    .single-q-card {
+        padding: 24px 18px;
+    }
+
+    .single-q-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .single-q-progress {
+        width: 100%;
+    }
+
+    .single-q-actions {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+
+    .single-q-actions .btn {
+        width: 100%;
+    }
+}
+
+
+/* استایل‌های خطای فیلد فرم */
+.input-has-error {
+    border-color: #EF4444 !important;
+    background-color: #FEF2F2 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18) !important;
+}
+
+.field-error-msg {
+    display: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #DC2626;
+    margin-top: 6px;
+    line-height: 1.5;
+    animation: fadeInError 0.2s ease-in-out;
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* استایل دکمه شروع مجدد ارزیابی */
+.single-q-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-restart-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FAFAFA;
+    color: #71717A;
+    border: 1.5px solid #E4E4E7;
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-family: var(--font-main);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-restart-action:hover,
+.btn-restart-report:hover {
+    background: #FEF2F2 !important;
+    border-color: #FCA5A5 !important;
+    color: #DC2626 !important;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.15);
+    transform: translateY(-1px);
+}
+
+.btn-restart-action svg {
+    color: inherit;
+}
+
+/* استایل‌های اختصاصی ارسال فرم به تلگرام و کارت بازخورد */
+.req-star {
+    color: #DC2626;
+    font-weight: 700;
+    margin-right: 2px;
+}
+
+.telegram-dispatch-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: #F0FDF4;
+    border: 1.5px solid #BBF7D0;
+    border-radius: var(--radius-sm);
+    color: #166534;
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+.telegram-dispatch-hint svg {
+    color: #22C55E;
+    flex-shrink: 0;
+}
+
+.form-feedback-card {
+    background: #FFFFFF;
+    border: 1.5px solid #22C55E;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-top: 20px;
+    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.14);
+    text-align: center;
+    animation: fadeInFeedback 0.3s ease-out;
+}
+
+@keyframes fadeInFeedback {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-feedback-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #15803D;
+    margin-bottom: 8px;
+}
+
+.form-feedback-card__desc {
+    color: #374151;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.form-feedback-card__action {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-telegram-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0284C7;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: 0.94rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+}
+
+.btn-telegram-open:hover {
+    background: #0369A1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+}
+
+/* استایل دکمه غیرفعال در فرم تماس */
+.btn:disabled,
+.btn[disabled] {
+    opacity: 0.45 !important;
+    cursor: not-allowed !important;
+    filter: grayscale(0.5) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    pointer-events: auto !important;
+}
+
+
+/* =========================================================
+   استایل‌های پیش‌نمایش و پنجره کتابچه اسلایدداک هوشران
+   ========================================================= */
+.btn-official-pdf {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4) !important;
+    font-weight: 800;
+}
+
+.btn-official-pdf:hover {
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.5) !important;
+}
+
+.slidedoc-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+}
+
+.slidedoc-modal__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(6px);
+}
+
+.slidedoc-modal__container {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 960px;
+    background: #0f172a;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalScaleIn {
+    from { opacity: 0; transform: translateX(-50%) scale(0.96); }
+    to { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+.slidedoc-modal__toolbar {
+    background: #1e293b;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slidedoc-modal__title {
+    color: #f8fafc;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.slidedoc-modal__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.slidedoc-modal__body {
+    flex: 1;
+    background: #475569;
+    overflow: hidden;
+}
+
+.slidedoc-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #475569;
+}
